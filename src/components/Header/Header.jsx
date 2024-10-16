@@ -13,7 +13,7 @@ export default function Header() {
         {
             name: "Home",
             endPoint: "/",
-            active: true
+            active: authStatus
 
         },
         {
