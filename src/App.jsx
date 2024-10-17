@@ -20,14 +20,14 @@ function App() {
   }, [dispatch])
   return!loading ?  (
     <>
-      <div className='min-h-screen flex flex-wrap content-between bg-gray-500'>
-      <div className='w-full block'>
+      {/* <div className='w-full min-h-screen flex flex-wrap content-between bg-gray-500'> */}
+      <div className='w-full block min-h-screen  flex-wrap content-between bg-gray-500'>
         <Header />
         <main>
           <Outlet />
         </main>
       </div>
-    </div>
+    {/* </div> */}
     </>
   ) : null
 } 

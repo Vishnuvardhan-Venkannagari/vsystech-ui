@@ -39,6 +39,34 @@ export class AuthInterface {
         }
     }
 
+    async signUp(data){
+        console.log(data)
+        try {
+            const response = await fetch(this.api_url + "/users/createUSer", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(
+                    {
+                        email: body.email,
+                        password: body.password,
+                        name: body.fullName,
+                        dob: body.DOB,
+                        phoneNumber: body.phoneNumber,
+                        state: body.state
+                    }
+                )
+            }
+        );
+        if (response.status === 200) {
+            const data = await response.json()
+            console.log(data)
+        }
+        } catch (error) {
+            console.log("Error in SignUp", error)
+        }
+    }
     async getCurrentUser(){}
 }
 

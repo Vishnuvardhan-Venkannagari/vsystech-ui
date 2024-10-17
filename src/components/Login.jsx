@@ -21,6 +21,7 @@ export default function Login() {
         setIsSubmitting(true) // Set submitting state to true
         try {
             const session = await authservice.logIn(data)
+            console.log(session)
             if (session) {
                 const currentUser = await authservice.getCurrentUser()
                 if (currentUser) dispatch(authLogin({ currentUser }))

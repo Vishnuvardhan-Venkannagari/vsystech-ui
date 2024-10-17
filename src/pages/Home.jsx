@@ -5,10 +5,13 @@ import Container from "../components/container/Container"
 import { useSelector } from "react-redux"
 import { Link, useNavigate, useParams } from "react-router-dom"
 import Header from '../components/Header/Header'
+import Login from './Login'
 export default function Home() {
   const [posts, setPosts] = useState([])
   const navigate = useNavigate()
   const userData = useSelector((state) => state.auth.userData)
+  const authStatus = useSelector((state) => state.auth.status)
+
   // if (!userData){
   //   navigate("/login")
   // }
@@ -41,7 +44,9 @@ export default function Home() {
   // }
   return (
     <div className='w-full py-8'>
-      <h1>inside </h1>
+      {!authStatus && (
+        <Login />
+      )}
     </div>
   )
 }

@@ -52,6 +52,7 @@ export default function Header() {
                         <li>
                             <LogOutBtn />
                         </li>
+                        // background-color: #6a11cb
                     )}
                 </ul>
             </nav>
