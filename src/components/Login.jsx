@@ -5,7 +5,7 @@ import Button from "./Button.jsx"
 import Input from "./Input.jsx"
 // import Logo from "./Logo"
 import { useForm } from "react-hook-form"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { logIn as authLogin } from "../store/authSlice.js"
 import './Login.css'
 
@@ -21,10 +21,11 @@ export default function Login() {
         setIsSubmitting(true) // Set submitting state to true
         try {
             const session = await authservice.logIn(data)
-            console.log(session)
             if (session) {
-                const currentUser = await authservice.getCurrentUser()
-                if (currentUser) dispatch(authLogin({ currentUser }))
+                // console.log(session.token)
+                const currentUser = await authservice.getCurrentUser(session.token)
+                const payload = {userData: currentUser, authToken: session.token}
+                if (currentUser) dispatch(authLogin({ payload }))
                 navigate("/")
             }
         } catch (error) {
@@ -33,7 +34,6 @@ export default function Login() {
             setIsSubmitting(false) // Reset submitting state after the attempt
         }
     }
-
     return (
         
             <div className='body-container'>

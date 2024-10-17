@@ -24,7 +24,7 @@ export class AuthInterface {
             );
             if (response.status === 200) {
                 const data = await response.json()
-                console.log(data)
+                return data
             }
         } catch (error) {
             console.log("Error in LoginEmail", error)
@@ -39,8 +39,8 @@ export class AuthInterface {
         }
     }
 
-    async signUp(data){
-        console.log(data)
+    async signUp(){
+        console.log()
         try {
             const response = await fetch(this.api_url + "/users/createUSer", {
                 method: "POST",
@@ -67,7 +67,17 @@ export class AuthInterface {
             console.log("Error in SignUp", error)
         }
     }
-    async getCurrentUser(){}
+    async getCurrentUser(data){
+        const me = await fetch(this.api_url + "/me", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "authtoken": data
+            }
+        });
+        if (me.status === 200) return await me.json()
+        return {}
+    }
 }
 
 const authservice = new AuthInterface()

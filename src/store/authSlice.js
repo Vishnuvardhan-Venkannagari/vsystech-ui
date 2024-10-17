@@ -5,14 +5,15 @@ const initialState = {
     userData: null
 };
 
+
 const authSlicer = createSlice({
     name: "auth",
     initialState,
     reducers: {
         logIn: (state, action) => {
             state.status = true
-            state.userData = action.payload.userData
-            state.authToken = action.payload.authToken
+            state.userData = action.payload.payload.userData
+            state.authToken = action.payload.payload.authToken
         },
         logOut: (state) => {
             state.status = false

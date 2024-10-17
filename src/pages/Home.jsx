@@ -11,7 +11,7 @@ export default function Home() {
   const navigate = useNavigate()
   const userData = useSelector((state) => state.auth.userData)
   const authStatus = useSelector((state) => state.auth.status)
-
+  // const authUser = useSelector((state) => state.auth.userData)
   // if (!userData){
   //   navigate("/login")
   // }
@@ -47,6 +47,7 @@ export default function Home() {
       {!authStatus && (
         <Login />
       )}
+      
     </div>
   )
 }
