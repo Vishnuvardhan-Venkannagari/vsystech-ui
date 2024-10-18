@@ -114,7 +114,7 @@ export default function SignUp() {
                         </Button>
                         <Link
                             to="/signup"
-                            className="font-medium text-primary transition-all duration-200 hover:underline"
+                            className="font-medium text-primary transition-all duration-200 hover:underline items-center"
                         >
                             Forgot Password
                         </Link>

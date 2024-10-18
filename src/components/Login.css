@@ -1,17 +1,26 @@
-* {
+
+  * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
   }
-
-  .body-container {
-    font-family: Arial, sans-serif;
-    height: 78vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; 
+    align-items: top;
   }
-
+  .body-container {
+    background-color: #6b7280;
+    font-family: Arial, sans-serif;
+    height: 100vh; /* Ensure full viewport height */
+    display: flex;
+    justify-content: top; /* Horizontal center */
+    align-items: top; /* Vertical center */
+    margin: 0; /* No extra margin */
+    padding: 0; /* No extra padding */
+  }
   .login-container {
     background-color: white;
     padding: 30px;
@@ -19,8 +28,15 @@
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     width: 450px;
     max-width: 100%;
+    min-height: 400px; /* Set a minimum height */
   }
-
+  .body-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Ensure it's column layout */
+    height: 100vh; /* Full viewport height */
+  }
   .login-container h2 {
     text-align: center;
     margin-bottom: 20px;

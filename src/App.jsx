@@ -18,18 +18,27 @@ function App() {
       else dispatch(logOut())
     }).finally(() => setLoading(false))
   }, [dispatch])
-  return!loading ?  (
-    <>
-      <div className='min-h-screen flex flex-wrap content-between bg-gray-500'>
-      <div className='w-full block'>
-        <Header />
-        <main>
-          <Outlet />
-        </main>
-      </div>
-    </div>
-    </>
-  ) : null
-} 
+//   return!loading ?  (
+//     <>
+//       <div className='min-h-screen flex flex-wrap content-between bg-gray-500'>
+//       <div className='w-full block'>
+//         <Header />
+//         <main>
+//           <Outlet />
+//         </main>
+//       </div>
+//     </div>
+//     </>
+//   ) : null
+// } 
+return !loading ? (
+  <div className='min-h-screen flex flex-col'>
+    <Header />
+    <main className='flex-grow pt-20 bg-gray-500'>
+      <Outlet />
+    </main>
+  </div>
+) : null;
+}
 
 export default App
