@@ -47,7 +47,6 @@ export default function Home() {
       {!authStatus && (
         <Login />
       )}
-    <h1>Github work flow</h1>
     </div>
   )
 }
