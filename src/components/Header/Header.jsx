@@ -17,7 +17,7 @@ export default function Header() {
 
         },
         {
-            name: "Log In ",
+            name: "LogIn ",
             endPoint: "/login",
             active: !authStatus
 
@@ -30,7 +30,7 @@ export default function Header() {
         }
     ]
   return (
-    <header className='py-3 shadow bg-gray-500'>
+    <header className='py-3 shadow bg-blue-500'>
         <Container>
             <nav className='flex'>
                 <div className='mr-4'>

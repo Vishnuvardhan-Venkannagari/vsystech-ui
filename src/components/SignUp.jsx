@@ -34,14 +34,9 @@ export default function SignUp() {
     }
 
     return (
-        <div className='body-container'>
+        <div className='flex items-center justify-center w-full'>
         <div className='signup-container'>
             <div className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}>
-                {/* <div className="mb-2 flex justify-center">
-                    <span className="inline-block w-full max-w-[100px]">
-                        <Logo width="100%" />
-                    </span>
-                </div> */}
                 <h2 className="signup-container-h2">Sign in to your account</h2>
                 <p className="mt-2 text-center text-base text-black/60">
                     Already have any account?&nbsp;
