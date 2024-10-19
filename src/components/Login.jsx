@@ -76,12 +76,14 @@ export default function Login() {
                             <Button type="submit" className="w-full" disabled={isSubmitting}> {/* Disable while submitting */}
                                 {isSubmitting ? "Signing in..." : "Sign in"}
                             </Button>
-                            <Link
-                                to="/signup"
-                                className="font-medium text-primary transition-all duration-200 hover:underline"
-                            >
-                                Forgot Password
-                            </Link>
+                            <div className='py-2 text-center'>
+                                <Link
+                                    to="/signup"
+                                    className="font-medium text-primary transition-all duration-200 hover:underline "
+                                >
+                                    Forgot Password
+                                </Link>
+                            </div>
                         </div>
                     </form>
                 </div>

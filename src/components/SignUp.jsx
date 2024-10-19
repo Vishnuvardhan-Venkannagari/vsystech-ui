@@ -107,12 +107,6 @@ export default function SignUp() {
                         <Button type="submit" className="w-full" disabled={isSubmitting}> {/* Disable while submitting */}
                             {isSubmitting ? "Signing in..." : "Sign in"}
                         </Button>
-                        <Link
-                            to="/signup"
-                            className="font-medium text-primary transition-all duration-200 hover:underline items-center"
-                        >
-                            Forgot Password
-                        </Link>
                     </div>
                 </form>
             </div>
