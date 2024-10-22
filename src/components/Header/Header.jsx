@@ -27,11 +27,18 @@ export default function Header() {
             endPoint: "/signup",
             active: !authStatus
 
+        },
+        {
+            name: "Profile",
+            endPoint: "/profile",
+            active: authStatus
+
         }
     ]
   return (
     <header className='py-3 shadow bg-blue-500'>
         <Container>
+            {/* <h1 class="text-bold text-xl uppercase font-bold">VSYS TECH</h1> */}
             <nav className='flex'>
                 <div className='mr-4'>
                     {/* <Link>

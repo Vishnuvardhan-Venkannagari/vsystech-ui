@@ -1,4 +1,3 @@
-import { data } from "autoprefixer";
 import conf from "../conf/conf.js";
 import axios from "axios";
 export class AuthInterface {

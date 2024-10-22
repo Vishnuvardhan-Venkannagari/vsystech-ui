@@ -5,7 +5,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://app.vsystech.net',  // Your backend URL
+        target: 'http://127.0.0.1:8000',  // Your backend URL
         changeOrigin: true,  // This allows the Vite server to pretend it's the backend
         // rewrite: (path) => path.replace(/^\/api/, ''), // Optional, but only needed if you're changing the path
       },

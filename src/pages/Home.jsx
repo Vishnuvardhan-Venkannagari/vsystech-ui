@@ -6,6 +6,7 @@ import { useSelector } from "react-redux"
 import { Link, useNavigate, useParams } from "react-router-dom"
 import Header from '../components/Header/Header'
 import Login from './Login'
+import AllProducts from '../components/AllProducts'
 export default function Home() {
   const [posts, setPosts] = useState([])
   const navigate = useNavigate()
@@ -47,6 +48,9 @@ export default function Home() {
       {!authStatus && (
         <Login />
       )}
+      {
+        authStatus && (<AllProducts />)
+      }
     </div>
   )
 }

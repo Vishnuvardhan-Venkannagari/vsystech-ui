@@ -24,7 +24,8 @@ export default function Login() {
             if (session) {
                 // console.log(session.token)
                 const currentUser = await authservice.getCurrentUser(session.token)
-                const payload = {userData: currentUser, authToken: session.token}
+                const payload = {userData: currentUser, authtoken: session.token}
+                console.log(currentUser)
                 if (currentUser) dispatch(authLogin({ payload }))
                 navigate("/")
             }

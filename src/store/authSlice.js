@@ -13,12 +13,12 @@ const authSlicer = createSlice({
         logIn: (state, action) => {
             state.status = true
             state.userData = action.payload.payload.userData
-            state.authToken = action.payload.payload.authToken
+            state.authtoken = action.payload.payload.authtoken
         },
         logOut: (state) => {
             state.status = false
             state.userData = null
-            state.authToken = null
+            state.authtoken = null
         }
     }
 })
