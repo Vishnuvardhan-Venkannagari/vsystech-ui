@@ -29,7 +29,7 @@ export class ProductInterface {
                 
             )
             const products = response.data; // axios automatically parses JSON
-            console.log(products);
+            
         } catch (error) {
             console.log("Error occured", error.message)
             return []

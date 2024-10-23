@@ -26,7 +26,8 @@ export default function AllProducts() {
             // setIsSubmitting(true)
             try {
                 const productResponse = await productservice.get_all(authtoken)
-                if (productResponse) setProds(productResponse)
+                console.log(productResponse.data);
+                if (productResponse.data) setProds(productResponse.data)
             } catch (error) {
                 console.error("Error fetching products:", error.message) 
                 setError(error.message)
