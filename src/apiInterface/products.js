@@ -9,17 +9,6 @@ export class ProductInterface {
 
     async get_all(authtoken){
         try {
-            console.log(authtoken)
-            // const products = await fetch(this.api_url + "/products", {
-            //     method: "GET",
-            //     headers: {
-            //         "Content-Type": "application/json",
-            //         "authtoken": authtoken 
-            //     },
-            // // mode: 'cors'
-            // }
-            // );
-            // if (products.status === 200) return await products.json()
             const response = await axios.get("/api/products",{
                 headers: {
                     "authtoken": authtoken ,
@@ -28,8 +17,8 @@ export class ProductInterface {
             }
                 
             )
-            const products = response.data; // axios automatically parses JSON
-            
+            const products = response.data; 
+            return products.data
         } catch (error) {
             console.log("Error occured", error.message)
             return []

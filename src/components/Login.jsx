@@ -15,29 +15,37 @@ export default function Login() {
     const [isSubmitting, setIsSubmitting] = useState(false) // New state for tracking submission
     const dispatch = useDispatch()
     const { register, handleSubmit, formState: { errors } } = useForm() // Destructure formState
+    const [loading, setLoading] = useState(false)
 
     const login = async (data) => {
         setError("")
         setIsSubmitting(true) // Set submitting state to true
         try {
             const session = await authservice.logIn(data)
+            setLoading(true)
             if (session) {
                 // console.log(session.token)
                 const currentUser = await authservice.getCurrentUser(session.token)
                 const payload = {userData: currentUser, authtoken: session.token}
-                console.log(currentUser)
+                // console.log(currentUser)
                 if (currentUser) dispatch(authLogin({ payload }))
                 navigate("/")
             }
+            setLoading(false)
         } catch (error) {
+            setLoading(false)
             setError(error.message)
         } finally {
+            setLoading(false)
             setIsSubmitting(false) // Reset submitting state after the attempt
         }
     }
     return (
         <div className='flex items-center justify-center w-full py-8'>
             <div className='login-container'>
+                {loading && 
+                <img src='/Users/vishnureddy/Documents/MyProjects/vsystech-ui/FrontEnd-UI/loding.png' />
+                }
                 <div className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}>
                     <h2 className="login-container-h2">Sign in to your account</h2>
                     <p className="mt-2 text-center text-base text-black/60">

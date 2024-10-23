@@ -20,32 +20,41 @@ export default function AllProducts() {
     // const { register, handleSubmit, formState: { errors } } = useForm() // Destructure formState
     const authStatus = useSelector((state) => state.auth.status)
     const authtoken = useSelector((state) => state.auth.authtoken)
+    const [loading, setLoading] = useState(false)
+
     useEffect(() => {
         const fetchProducts = async () => {
+            setLoading(true)
             setError("")
             // setIsSubmitting(true)
             try {
                 const productResponse = await productservice.get_all(authtoken)
-                console.log(productResponse.data);
-                if (productResponse.data) setProds(productResponse.data)
+                console.log(productResponse);
+                if (productResponse) setProds(productResponse)
+                    setLoading(false)
             } catch (error) {
+                setLoading(false)
                 console.error("Error fetching products:", error.message) 
                 setError(error.message)
             }
         }
     if (authStatus) {
         fetchProducts()
+        setLoading(false)
     }
     }, [authStatus, authtoken])
-    console.log(prods)
     
     return (
         <div className='w-full'>
             <Container>
             <div className='flex flex-wrap'>
+                {loading && 
+                    <img src='/Users/vishnureddy/Documents/MyProjects/vsystech-ui/FrontEnd-UI/loding.png' />
+                }
                 {
                 prods.map((prod) => (
-                    <div className="p-2 w-1/4" key={prod/$id}>
+                    // console.log(prod)
+                    <div className="p-2 w-1/4" key={prod.id}>
                     <Product post={prod} />
                     </div>
                 ))

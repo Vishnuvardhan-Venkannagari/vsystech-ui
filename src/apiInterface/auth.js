@@ -39,7 +39,6 @@ export class AuthInterface {
     }
 
     async signUp(){
-        console.log()
         try {
             const response = await fetch(this.api_url + "/users/createUSer", {
                 method: "POST",
@@ -60,7 +59,7 @@ export class AuthInterface {
         );
         if (response.status === 200) {
             const data = await response.json()
-            console.log(data)
+            return data
         }
         } catch (error) {
             console.log("Error in SignUp", error)
