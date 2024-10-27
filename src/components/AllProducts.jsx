@@ -46,19 +46,14 @@ export default function AllProducts() {
     
     return (
         <div className='w-full'>
+            {loading && <img src='../../loading.png' alt=""/>}
             <Container>
-            <div className='flex flex-wrap'>
-                {loading && 
-                    <img src='/Users/vishnureddy/Documents/MyProjects/vsystech-ui/FrontEnd-UI/loding.png' />
-                }
-                {
-                prods.map((prod) => (
-                    // console.log(prod)
+            <div className='flex flex-wrap w-full'>
+                { prods.map((prod) => (
                     <div className="p-2 w-1/4" key={prod.id}>
-                    <Product post={prod} />
-                    </div>
-                ))
-                }
+                    <Product prod={prod} />
+                    </div> 
+                ))}
             </div>
             </Container>
       </div>

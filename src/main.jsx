@@ -9,7 +9,7 @@ import store from './store/store.js'
 import Home from './pages/Home.jsx'
 import Login from './pages/Login.jsx'
 import Signup from './pages/Signup.jsx'
-
+import ProductData from './pages/ProductData.jsx'
 const router = createBrowserRouter(
   [
     {
@@ -33,6 +33,14 @@ const router = createBrowserRouter(
           element: (
             <AuthLayout authentication={false}>
               <Signup />
+            </AuthLayout>
+          )
+        },
+        {
+          path: "/product/:prodId",
+          element: (
+            <AuthLayout authentication>
+              <ProductData />
             </AuthLayout>
           )
         }
