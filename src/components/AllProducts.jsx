@@ -50,7 +50,7 @@ export default function AllProducts() {
             <Container>
             <div className='flex flex-wrap w-full'>
                 { prods.map((prod) => (
-                    <div className="p-2 w-1/4" key={prod.id}>
+                    <div className="p-2 w-full" key={prod.id}>
                     <Product prod={prod} />
                     </div> 
                 ))}

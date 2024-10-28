@@ -36,7 +36,7 @@ export default function Header() {
         }
     ]
   return (
-    <header className='py-3 shadow bg-blue-500'>
+    <header className='py-3 shadow bg-customGold'>
         <Container>
             {/* <h1 class="text-bold text-xl uppercase font-bold">VSYS TECH</h1> */}
             <nav className='flex'>

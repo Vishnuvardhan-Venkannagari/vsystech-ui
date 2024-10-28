@@ -8,6 +8,9 @@ export default {
     extend: {
       colors: {
         customPurple: '#6a11cb',
+        customBlue: '#778fb4',
+        customBrown: "#cda97d",
+        customGold: 'rgb(165, 134, 77)',
       }
     },
   },
