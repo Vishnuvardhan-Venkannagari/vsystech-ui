@@ -86,7 +86,7 @@ export default function SignUp() {
                             label="DOB"
                             type="text"
                             className="w-full"
-                            placeholder="DOB"
+                            placeholder="dd-mm-yyyy"
                             {...register("DOB", { required: "DOB is required" })}
                             error={errors.password?.message} 
                         />
