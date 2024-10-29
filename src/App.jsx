@@ -22,7 +22,7 @@ function App() {
 return !loading ? (
   <div className='min-h-screen flex flex-col'>
     <Header />
-    <main className='flex-grow pt-20 bg-gray-500'>
+    <main className='flex-grow pt-20 bg-gray-300'>
       <Outlet />
     </main>
   </div>

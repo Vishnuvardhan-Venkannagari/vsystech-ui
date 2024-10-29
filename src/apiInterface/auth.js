@@ -9,18 +9,17 @@ export class AuthInterface {
     async logIn(body){
         try {
             const response = await fetch(this.api_url + "/login", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(
-                        {
-                            email: body.email,
-                            password: body.password
-                        }
-                    )
-                }
-            );
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(
+                    {
+                        email: body.email,
+                        password: body.password
+                    }
+                )
+            });
             if (response.status === 200) {
                 const data = await response.json()
                 return data
@@ -38,29 +37,31 @@ export class AuthInterface {
         }
     }
 
-    async signUp(){
+    async signUp(body){
         try {
-            const response = await fetch(this.api_url + "/users/createUSer", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(
-                    {
-                        email: body.email,
-                        password: body.password,
-                        name: body.fullName,
-                        dob: body.DOB,
-                        phoneNumber: body.phoneNumber,
-                        state: body.state
-                    }
-                )
+            const response = await fetch("/api/users/createUser", 
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(
+                        {
+                            email: body.email,
+                            password: body.password,
+                            name: body.fullName,
+                            phoneNumber: body.phoneNumber,
+                            dob: body.DOB,
+                            state: body.state,
+                            profilePicture: " "
+                        }
+                    )
+            })
+            if (response.status === 200) {
+                const data = await response.json()
+                if (data.status === "success") return data.data
+                return {}
             }
-        );
-        if (response.status === 200) {
-            const data = await response.json()
-            return data
-        }
         } catch (error) {
             console.log("Error in SignUp", error)
         }

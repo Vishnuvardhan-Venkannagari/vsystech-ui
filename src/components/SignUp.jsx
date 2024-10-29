@@ -12,24 +12,26 @@ import './SignUp.css'
 export default function SignUp() {
     const navigate = useNavigate()
     const [error, setError] = useState("")
-    const [isSubmitting, setIsSubmitting] = useState(false) // New state for tracking submission
+    const [isSubmitting, setIsSubmitting] = useState(false) 
     const dispatch = useDispatch()
-    const { register, handleSubmit, formState: { errors } } = useForm() // Destructure formState
+    const { register, handleSubmit, formState: { errors } } = useForm() 
 
-    const signUp = async (data) => {
+    const sendSignUp = async (data) => {
         setError("")
-        setIsSubmitting(true) // Set submitting state to true
+        setIsSubmitting(true) 
         try {
             const session = await authservice.signUp(data)
             if (session) {
-                const currentUser = await authservice.getCurrentUser()
-                if (currentUser) dispatch(authLogin({ currentUser }))
+                console.log("session after sihgnup", session)
+                const payload = {userData: session.user_data, authtoken: session.authtoken}
+                console.log(payload)
+                dispatch(authLogin({ payload }))
                 navigate("/")
             }
         } catch (error) {
             setError(error.message)
         } finally {
-            setIsSubmitting(false) // Reset submitting state after the attempt
+            setIsSubmitting(false) 
         }
     }
 
@@ -48,7 +50,7 @@ export default function SignUp() {
                     </Link>
                 </p>
                 {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
-                <form onSubmit={handleSubmit(signUp)} className="mt-8">
+                <form onSubmit={handleSubmit(sendSignUp)} className="mt-8">
                     <div >
                         <Input
                             label="Email"
@@ -62,7 +64,7 @@ export default function SignUp() {
                                     message: "Invalid email address"
                                 }
                             })}
-                            error={errors.email?.message} // Pass error message
+                            error={errors.email?.message} 
                         />
                         <Input
                             label="Password"
@@ -70,7 +72,7 @@ export default function SignUp() {
                             className="w-full"
                             placeholder="Password"
                             {...register("password", { required: "Password is required" })}
-                            error={errors.password?.message} // Pass error message
+                            error={errors.password?.message} 
                         />
                         <Input
                             label="Full Name"
@@ -78,7 +80,7 @@ export default function SignUp() {
                             className="w-full"
                             placeholder="Full Name"
                             {...register("fullName", { required: "Full Name is required" })}
-                            error={errors.password?.message} // Pass error message
+                            error={errors.password?.message}
                         />
                         <Input
                             label="DOB"
@@ -86,7 +88,7 @@ export default function SignUp() {
                             className="w-full"
                             placeholder="DOB"
                             {...register("DOB", { required: "DOB is required" })}
-                            error={errors.password?.message} // Pass error message
+                            error={errors.password?.message} 
                         />
                         <Input
                             label="Phone Number"
@@ -94,7 +96,7 @@ export default function SignUp() {
                             className="w-full"
                             placeholder="Phone Number"
                             {...register("phoneNumber", { required: "Phone Number is required" })}
-                            error={errors.password?.message} // Pass error message
+                            error={errors.password?.message} 
                         />
                         <Input
                             label="State"
@@ -102,10 +104,10 @@ export default function SignUp() {
                             className="w-full"
                             placeholder="State"
                             {...register("state", { required: "State is required" })}
-                            error={errors.password?.message} // Pass error message
+                            error={errors.password?.message}
                         />
                         <Button type="submit" className="w-full" disabled={isSubmitting}> {/* Disable while submitting */}
-                            {isSubmitting ? "Signing in..." : "Sign in"}
+                            {isSubmitting ? "Signing Up..." : "Sign Up"}
                         </Button>
                     </div>
                 </form>

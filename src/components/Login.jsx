@@ -12,22 +12,20 @@ import './Login.css'
 export default function Login() {
     const navigate = useNavigate()
     const [error, setError] = useState("")
-    const [isSubmitting, setIsSubmitting] = useState(false) // New state for tracking submission
+    const [isSubmitting, setIsSubmitting] = useState(false) 
     const dispatch = useDispatch()
-    const { register, handleSubmit, formState: { errors } } = useForm() // Destructure formState
+    const { register, handleSubmit, formState: { errors } } = useForm()
     const [loading, setLoading] = useState(false)
 
     const login = async (data) => {
         setError("")
-        setIsSubmitting(true) // Set submitting state to true
+        setIsSubmitting(true) 
         try {
             const session = await authservice.logIn(data)
             setLoading(true)
             if (session) {
-                // console.log(session.token)
                 const currentUser = await authservice.getCurrentUser(session.token)
                 const payload = {userData: currentUser, authtoken: session.token}
-                // console.log(currentUser)
                 if (currentUser) dispatch(authLogin({ payload }))
                 navigate("/")
             }
@@ -37,7 +35,7 @@ export default function Login() {
             setError(error.message)
         } finally {
             setLoading(false)
-            setIsSubmitting(false) // Reset submitting state after the attempt
+            setIsSubmitting(false)
         }
     }
     return (
@@ -72,7 +70,7 @@ export default function Login() {
                                         message: "Invalid email address"
                                     }
                                 })}
-                                error={errors.email?.message} // Pass error message
+                                error={errors.email?.message}
                             />
                             <Input
                                 label="Password"
@@ -80,7 +78,7 @@ export default function Login() {
                                 className="w-full"
                                 placeholder="Password"
                                 {...register("password", { required: "Password is required" })}
-                                error={errors.password?.message} // Pass error message
+                                error={errors.password?.message}
                             />
                             <Button type="submit" className="w-full" disabled={isSubmitting}> {/* Disable while submitting */}
                                 {isSubmitting ? "Signing in..." : "Sign in"}
