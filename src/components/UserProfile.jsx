@@ -25,6 +25,7 @@ export default function UserProfile() {
             const getUser = await authservice.getUserProfile({id: id, authtoken: authtoken})
             console.log(getUser)
             if (getUser) setProfileData(getUser)
+            setLoading(false) 
           } catch (error) {
             setLoading(false)
             console.error("Error fetching user:", error.message) 
@@ -35,6 +36,7 @@ export default function UserProfile() {
   }, [id, authtoken])
   return (
     <div className="profile-container">
+        {loading && <img src='../../loading.png' alt=""/>}
         <img src={profileData.photo_url} alt="" />
         <Button type="submit" onClick={handleSubmit(handleClose)}> 
           Upload Photo 
