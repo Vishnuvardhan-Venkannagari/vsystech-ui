@@ -11,6 +11,7 @@ export default {
         customBlue: '#778fb4',
         customBrown: "#cda97d",
         customGold: 'rgb(165, 134, 77)',
+        customHeaderButtonColor:"#555",
       }
     },
   },

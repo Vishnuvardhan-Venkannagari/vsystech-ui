@@ -29,7 +29,6 @@ export default function AllProducts() {
             // setIsSubmitting(true)
             try {
                 const productResponse = await productservice.get_all(authtoken)
-                console.log(productResponse);
                 if (productResponse) setProds(productResponse)
                     setLoading(false)
             } catch (error) {

@@ -77,6 +77,19 @@ export class AuthInterface {
         if (me.status === 200) return await me.json()
         return {}
     }
+
+    async getUserProfile(data){
+        console.log(data.authtoken)
+        const user = await fetch(`/api/users/${data.id}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "authtoken": data.authtoken
+            }
+        })
+        if (user.status === 200) return await user.json()
+        return {}
+    }
 }
 
 const authservice = new AuthInterface()
