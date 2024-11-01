@@ -94,7 +94,7 @@ export class AuthInterface {
                             dob: body.DOB,
                             gender: data.gender,
                             state: body.state,
-                            profilePicture: " ",
+                            profilePicture: "",
                             country: "USA"
                         }
                     )

@@ -83,7 +83,7 @@ export default function ProfileUpdate() {
                             {...register("state", { required: "State is required" })}
                             error={errors.password?.message}
                         />
-                        <Button type="submit" className="w-full" disabled={isSubmitting}> {/* Disable while submitting */}
+                        <Button type="submit" className="w-full" disabled={isSubmitting}>
                             {isSubmitting ? "Updating..." : "Update"}
                         </Button>
                     </div>
