@@ -34,20 +34,28 @@ export default function UserProfile() {
       }
     if (id) fetchUser()
   }, [id, authtoken])
+      // {/* <h1>Full Name: {profileData.name}</h1> */}
+
   return (
     <div className="profile-container">
-        {loading && <img src='../../loading.png' alt=""/>}
-        <img src={profileData.photo_url} alt="" />
-        <Button type="submit" onClick={handleSubmit(handleClose)}> 
-          Upload Photo 
-        </Button>
-        {/* <h1>Full Name: {profileData.name}</h1> */}
-        <h1>Full Name: Vishnuvardhan Venkannagari</h1>
-        <h1>Email Address: {profileData.email}</h1>
-        <h1>Phone Number: (309)-222-0106</h1>
-        <h1>State: {profileData.state}</h1>
-        <h1>Country: {profileData.country}</h1>
-
+        <div class="container rounded bg-white mt-5 mb-5">
+          {loading && <img src='../../loading.png' alt=""/>}
+          <img src={profileData.photo_url} alt="" />
+          <div class="text-center">
+            <span class="font-weight-bold">
+              <h2>Vishnuvardhan Venkannagari</h2>
+              <h2>{profileData.email}</h2>
+            </span> 
+          </div>
+          <Button type="submit" onClick={handleSubmit(handleClose)}> 
+            Upload Photo 
+          </Button>
+          <h1>Full Name: Vishnuvardhan Venkannagari</h1>
+          <h1>Email Address: {profileData.email}</h1>
+          <h1>Phone Number: (309)-222-0106</h1>
+          <h1>State: {profileData.state}</h1>
+          <h1>Country: {profileData.country}</h1>
+        </div>
     </div>
   )
 }
