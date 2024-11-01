@@ -22,11 +22,11 @@ export default function SignUp() {
         try {
             const session = await authservice.signUp(data)
             if (session) {
-                console.log("session after sihgnup", session)
-                const payload = {userData: session.user_data, authtoken: session.authtoken}
-                console.log(payload)
+                navigate(`/user/profile/${session.user_data.user_id}`)
+                const payload = {userData: session.user_data, authtoken: session.authtoken, status: false}
+                // console.log(payload)
                 dispatch(authLogin({ payload }))
-                navigate("/")
+                // navigate("/")
             }
         } catch (error) {
             setError(error.message)
@@ -75,36 +75,20 @@ export default function SignUp() {
                             error={errors.password?.message} 
                         />
                         <Input
-                            label="Full Name"
+                            label="First Name"
                             type="text"
                             className="w-full"
-                            placeholder="Full Name"
-                            {...register("fullName", { required: "Full Name is required" })}
-                            error={errors.password?.message}
+                            placeholder="First Name"
+                            {...register("firstName", { required: "First Name is required" })}
+                            error={errors.firstName?.message}
                         />
                         <Input
-                            label="DOB"
+                            label="Last Name"
                             type="text"
                             className="w-full"
-                            placeholder="dd-mm-yyyy"
-                            {...register("DOB", { required: "DOB is required" })}
-                            error={errors.password?.message} 
-                        />
-                        <Input
-                            label="Phone Number"
-                            type="text"
-                            className="w-full"
-                            placeholder="Phone Number"
-                            {...register("phoneNumber", { required: "Phone Number is required" })}
-                            error={errors.password?.message} 
-                        />
-                        <Input
-                            label="State"
-                            type="text"
-                            className="w-full"
-                            placeholder="State"
-                            {...register("state", { required: "State is required" })}
-                            error={errors.password?.message}
+                            placeholder="Last Name"
+                            {...register("lastName", { required: "First Name is required" })}
+                            error={errors.lastName?.message}
                         />
                         <Button type="submit" className="w-full" disabled={isSubmitting}> {/* Disable while submitting */}
                             {isSubmitting ? "Signing Up..." : "Sign Up"}

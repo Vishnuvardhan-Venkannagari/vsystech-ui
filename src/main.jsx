@@ -11,6 +11,8 @@ import Login from './pages/Login.jsx'
 import Signup from './pages/Signup.jsx'
 import ProductData from './pages/ProductData.jsx'
 import UserProfile from "./pages/UserProfile.jsx"
+// import UpdateUser from './pages/ProfileUpdate.jsx'
+import ProfileUpdate from './components/ProfileUpdate.jsx'
 
 const router = createBrowserRouter(
   [
@@ -45,13 +47,20 @@ const router = createBrowserRouter(
               <ProductData />
             </AuthLayout>
           )
-        }
-        ,
+        },
         {
           path: "/user/:id",
           element: (
             <AuthLayout authentication>
               <UserProfile />
+            </AuthLayout>
+          )
+        },
+        {
+          path: "/user/profile/:id",
+          element: (
+            <AuthLayout authentication={false}>
+              <ProfileUpdate />
             </AuthLayout>
           )
         }

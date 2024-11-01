@@ -11,7 +11,7 @@ const authSlicer = createSlice({
     initialState,
     reducers: {
         logIn: (state, action) => {
-            state.status = true
+            state.status = action.payload.payload.status !== undefined ? action.payload.payload.status : true;
             state.userData = action.payload.payload.userData
             state.authtoken = action.payload.payload.authtoken
         },

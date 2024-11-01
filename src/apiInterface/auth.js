@@ -1,3 +1,4 @@
+import { data } from "autoprefixer";
 import conf from "../conf/conf.js";
 import axios from "axios";
 export class AuthInterface {
@@ -39,6 +40,15 @@ export class AuthInterface {
 
     async signUp(body){
         try {
+            const inpdata = JSON.stringify(
+                {
+                    email: body.email,
+                    password: body.password,
+                    firstName: body.firstName,
+                    lastName: body.lastName,
+                }
+            )
+            console.log(inpdata)
             const response = await fetch("/api/users/createUser", 
                 {
                     method: "POST",
@@ -49,11 +59,12 @@ export class AuthInterface {
                         {
                             email: body.email,
                             password: body.password,
-                            name: body.fullName,
-                            phoneNumber: body.phoneNumber,
-                            dob: body.DOB,
-                            state: body.state,
-                            profilePicture: " "
+                            firstName: body.firstName,
+                            lastName: body.lastName,
+                            // phoneNumber: body.phoneNumber,
+                            // dob: body.DOB,
+                            // state: body.state,
+                            // profilePicture: " "
                         }
                     )
             })
@@ -66,6 +77,39 @@ export class AuthInterface {
             console.log("Error in SignUp", error)
         }
     }
+
+    async profileUpdate(body){
+        try {
+            const response = await fetch("/api/users/updateUser", 
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "authtoken": body.authtoken
+                    },
+                    body: JSON.stringify(
+                        {
+                            uid: body.id,
+                            phoneNumber: body.phoneNumber,
+                            dob: body.DOB,
+                            gender: data.gender,
+                            state: body.state,
+                            profilePicture: " ",
+                            country: "USA"
+                        }
+                    )
+            })
+            if (response.status === 200) {
+                const data = await response.json()
+                if (data.status === "success") return data.data
+                return {}
+            }
+        } catch (error) {
+            console.log("Error in SignUp", error)
+        }
+    }
+    
+
     async getCurrentUser(data){
         const me = await fetch(this.api_url + "/me", {
             method: "GET",
