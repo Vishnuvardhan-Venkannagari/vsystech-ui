@@ -27,7 +27,8 @@ export default function ProfileUpdate() {
             data.authtoken = authtoken
             const session = await authservice.profileUpdate(data)
             if (session) {
-                const payload = {userData: session.user_data, authtoken: authtoken}
+                const payload = {userData: session, authtoken: authtoken}
+                console.log(payload)
                 setIsSubmitting(false) 
                 setLoading(false)
                 dispatch(authLogin({ payload }))

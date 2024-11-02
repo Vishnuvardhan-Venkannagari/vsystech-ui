@@ -32,7 +32,7 @@ export default function Header() {
         },
         {
             name: "Profile",
-            endPoint: `/user/${authData?.used_id}`, // Dynamic profile endpoint
+            endPoint: `/user/${authData?.user_id}`, // Dynamic profile endpoint
             active: authStatus
         }
     ]
