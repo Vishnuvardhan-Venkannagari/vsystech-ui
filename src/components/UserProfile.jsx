@@ -23,7 +23,6 @@ export default function UserProfile() {
           setLoading(true) 
           try {
             const getUser = await authservice.getUserProfile({id: id, authtoken: authtoken})
-            console.log(getUser)
             if (getUser) setProfileData(getUser)
             setLoading(false) 
           } catch (error) {
@@ -40,7 +39,7 @@ export default function UserProfile() {
     <div className="profile-container">
         <div class="container rounded bg-white mt-5 mb-5">
           {loading && <img src='../../loading.png' alt=""/>}
-          <img src={profileData.photo_url} alt="" />
+          <img src={profileData.profilePicture} alt="" />
           
           <div class="text-center">
             <span class="font-weight-bold">

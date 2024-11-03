@@ -24,7 +24,6 @@ export default function SignUp() {
             if (session) {
                 navigate(`/user/profile/${session.user_data.user_id}`)
                 const payload = {userData: session.user_data, authtoken: session.authtoken, status: false}
-                // console.log(payload)
                 dispatch(authLogin({ payload }))
                 // navigate("/")
             }

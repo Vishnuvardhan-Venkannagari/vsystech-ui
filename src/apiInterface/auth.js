@@ -34,7 +34,7 @@ export class AuthInterface {
         try {
             return null
         } catch (error) {
-            console.log("Appwrite logOut", error)
+            console.log("logOut", error)
         }
     }
 
@@ -48,7 +48,6 @@ export class AuthInterface {
                     lastName: body.lastName,
                 }
             )
-            console.log(inpdata)
             const response = await fetch("/api/users/createUser", 
                 {
                     method: "POST",
@@ -123,7 +122,6 @@ export class AuthInterface {
     }
 
     async getUserProfile(data){
-        console.log(data.authtoken)
         const user = await fetch(`/api/users/${data.id}`, {
             method: "GET",
             headers: {

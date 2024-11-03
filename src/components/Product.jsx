@@ -2,12 +2,13 @@ import React, {useState} from 'react'
 import "./Product.css"
 import Button from "./Button.jsx"
 import { useForm } from "react-hook-form"
+import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function Product({prod}) {
   const { register, handleSubmit, formState: { errors } } = useForm() 
   const [isAdded, setIsAdded] = useState(false)
   const AddToCart = async(data) => {
-    console.log("Inside add cart")
     setIsAdded(true)
     return "Added to cart successfully"
   }
@@ -24,6 +25,7 @@ export default function Product({prod}) {
         <p>{prod.short_description}</p>
         <h3>Price: ${prod.price}</h3>
         <Button type="submit" onClick={handleSubmit(AddToCart)}> 
+        <FontAwesomeIcon icon={faCartPlus} className="mr-2" />
           Add to Cart
         </Button>
 
@@ -31,7 +33,9 @@ export default function Product({prod}) {
         <div className="modal">
           <div className="modal-content">
             <p>Added to cart successfully!</p>
-            <button onClick={handleClose}>OK</button>
+            <Button type="submit" onClick={handleClose}>
+              OK
+            </Button>
           </div>
         </div>
       )}

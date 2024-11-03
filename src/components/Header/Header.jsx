@@ -6,6 +6,8 @@ import LogOutBtn from './LogOutBtn'
 import UserProfile from '../UserProfile'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHome, faUser, faSignInAlt, faUserPlus, faCartShopping } from '@fortawesome/free-solid-svg-icons';
 
 export default function Header() {
     const authStatus = useSelector((state) => state.auth.status)
@@ -15,26 +17,40 @@ export default function Header() {
         {
             name: "Home",
             endPoint: "/",
+            // image: "./home-button.png",
+            icon: faHome,
+            active: authStatus
+
+        },
+        {
+            name: "Cart",
+            endPoint: "/",
+            icon: faCartShopping,
             active: authStatus
 
         },
         {
             name: "LogIn ",
             endPoint: "/login",
+            icon: faSignInAlt,
             active: !authStatus
 
         },
         {
             name: "SignUp",
             endPoint: "/signup",
+            icon: faUserPlus,
             active: !authStatus
 
         },
         {
             name: "Profile",
             endPoint: `/user/${authData?.user_id}`, // Dynamic profile endpoint
+            // image: "./profile-button.png",
+            icon: faUser,
             active: authStatus
-        }
+        },
+        
     ]
   return (
     <header className='py-3 shadow bg-customGold flex items-center justify-between'>
@@ -55,12 +71,13 @@ export default function Header() {
                     VSYS TECH
                 </h1> */}
 
-                <ul className='flex ml-auto'>
+                <ul className='flex ml-auto '>
                     {
                         naveItems.map((items) => items.active ? (
                             <li key={items.name}>
-                                <button onClick={() => navigate(items.endPoint)} className='inline-block px-6 py-2 duration-200 bg-customHeaderButtonColor hover:bg-blue-100 rounded-full mx-1 text-white font-bold'>
-                                    {items.name}
+                                <button onClick={() => navigate(items.endPoint)} className='inline-block px-6 py-2 duration-200 bg-customHeaderButtonColor hover:bg-customPurple rounded-full mx-1 text-white font-bold'>
+                                {items.icon && <FontAwesomeIcon icon={items.icon} className="mr-2" />} 
+                                {items.name}
                                 </button>
                             </li>
                         ) : null)
