@@ -40,14 +40,6 @@ export class AuthInterface {
 
     async signUp(body){
         try {
-            const inpdata = JSON.stringify(
-                {
-                    email: body.email,
-                    password: body.password,
-                    firstName: body.firstName,
-                    lastName: body.lastName,
-                }
-            )
             const response = await fetch("/api/users/createUser", 
                 {
                     method: "POST",

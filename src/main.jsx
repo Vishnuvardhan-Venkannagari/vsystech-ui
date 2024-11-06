@@ -11,7 +11,7 @@ import Login from './pages/Login.jsx'
 import Signup from './pages/Signup.jsx'
 import ProductData from './pages/ProductData.jsx'
 import UserProfile from "./pages/UserProfile.jsx"
-// import UpdateUser from './pages/ProfileUpdate.jsx'
+import UserCart from './pages/UserCart.jsx'
 import ProfileUpdate from './components/ProfileUpdate.jsx'
 
 const router = createBrowserRouter(
@@ -61,6 +61,14 @@ const router = createBrowserRouter(
           element: (
             <AuthLayout authentication={false}>
               <ProfileUpdate />
+            </AuthLayout>
+          )
+        },
+        {
+          path: "/cart",
+          element: (
+            <AuthLayout authentication={false}>
+              <UserCart />
             </AuthLayout>
           )
         }

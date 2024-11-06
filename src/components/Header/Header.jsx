@@ -17,14 +17,13 @@ export default function Header() {
         {
             name: "Home",
             endPoint: "/",
-            // image: "./home-button.png",
             icon: faHome,
             active: authStatus
 
         },
         {
             name: "Cart",
-            endPoint: "/",
+            endPoint: "/cart",
             icon: faCartShopping,
             active: authStatus
 
@@ -45,8 +44,7 @@ export default function Header() {
         },
         {
             name: "Profile",
-            endPoint: `/user/${authData?.user_id}`, // Dynamic profile endpoint
-            // image: "./profile-button.png",
+            endPoint: `/user/${authData?.user_id}`,
             icon: faUser,
             active: authStatus
         },
