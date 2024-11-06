@@ -1,0 +1,7 @@
+.cart-wrapper {
+    display: flex;
+    flex-wrap: wrap; /* Allows items to wrap onto the next row if they don’t fit */
+    gap: 20px; /* Space between CartItem components */
+    justify-content: space-around; /* Centers items with space around them */
+    padding: 20px;
+}

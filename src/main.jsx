@@ -67,7 +67,7 @@ const router = createBrowserRouter(
         {
           path: "/cart",
           element: (
-            <AuthLayout authentication={false}>
+            <AuthLayout authentication>
               <UserCart />
             </AuthLayout>
           )
