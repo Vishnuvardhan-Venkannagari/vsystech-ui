@@ -20,6 +20,14 @@
     font-size: 25px;
     font-weight: bold;
   }
+
+  .cart-container h2 {
+    text-align: left;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    font-size: 17px;
+    font-weight: bold;
+  }
   .cart-container img {
     width: 40%; /* Set width to 40% of the container */
     height: 50%; 

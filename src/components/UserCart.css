@@ -1,7 +1,32 @@
-.cart-wrapper {
-    display: flex;
-    flex-wrap: wrap; /* Allows items to wrap onto the next row if they don’t fit */
-    gap: 20px; /* Space between CartItem components */
-    justify-content: space-around; /* Centers items with space around them */
+.price-container {
+    /* display: flex; */
+    flex-wrap: wrap; 
+    gap: 20px; 
+    justify-content: center; 
+    margin-top: 30px;
     padding: 20px;
+    align-items: center;
+    text-align: center;
+    width: 100%;
 }
+
+.price-container h1 {
+    text-align: center;
+    margin-bottom: 5px;
+    margin-top: 15px;
+    color: #333;
+    background-color: rgb(208, 184, 184);
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-size: 25px;
+    font-weight: bold;
+  }
+
+.price-container h2 {
+    text-align: center;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    font-size: 17px;
+    font-weight: bold;
+  }
