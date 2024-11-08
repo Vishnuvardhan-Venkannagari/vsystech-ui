@@ -40,6 +40,64 @@ export class CartInterface {
         }
         
     }
+
+    async removeItemFromCart(data){
+        try {
+            console.log(data.authtoken)
+            const reqRemoveCartItem = await fetch("/api/cart/removeCartItem", {
+                method: "POST",
+                headers: {
+                    "authtoken": data.authtoken ,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(
+                    {
+                        cart_item_id: data.cart_item_id
+                    }
+                )
+            }
+                
+            )
+            if (reqRemoveCartItem.status === 200){
+                const respone =  await reqRemoveCartItem.json()
+                return respone
+            }
+            return {}
+        } catch (error) {
+            console.log("Error occured", error.message)
+            return []
+        }
+        
+    }
+
+    async checkInCart(data){
+        try {
+            const queryParams = new URLSearchParams({q: JSON.stringify({
+                "userData.uid": data.uid,
+                "productData.id": data.prod_id,
+                "status": 'InCart'
+            })}).toString();
+
+            const response = await fetch(`/api/cart?${queryParams}`,{
+                method: "GET",
+                headers: {
+                    "authtoken": data.authtoken ,
+                    'Content-Type': 'application/json'
+                },
+                
+            }
+                
+            )
+            if (response.status === 200){
+                const respone1 =  await response.json()
+                return respone1
+            }
+        } catch (error) {
+            console.log("Error occured", error.message)
+            return []
+        }
+        
+    }
 }
 
 
