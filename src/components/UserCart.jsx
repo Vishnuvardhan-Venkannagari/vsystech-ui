@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form"
 import Button from "./Button.jsx"
 import Input from "./Input.jsx"
 import AddressForm from './AddressForm.jsx'
-import { faCreditCard } from '@fortawesome/free-solid-svg-icons';
+import { faCreditCard, faPaypal } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function UserCart() {
@@ -47,9 +47,18 @@ export default function UserCart() {
   }, [authtoken])
 
   const handleOpenAddressForm = () => {
-    setTakeAddress(true);
-    // window.open('/AddressForm', '_blank', 'width=600,height=400');
+    setTakeAddress(true)
+    return "Clicked on logout succesfully"
+  }
+  const handleClose = () => {
+    setTakeAddress(false) 
+  }
 
+  const createOrderWithPaypal = async() => {
+    const data = {gateway_name: "PayPal", authtoken: authtoken}
+    console.log(data)
+    const getOrderDetails = await cartService.createPaymentOrder(data)
+    console.log(getOrderDetails)
   }
   
   return (
@@ -82,12 +91,33 @@ export default function UserCart() {
             <h3>{totalPrice}</h3>
           </div>
           <div className='button-container'>
-            <Button type="submit" onClick={handleOpenAddressForm} className="mr-2">
+            {/* <Button type="submit" onClick={handleOpenAddressForm} className="mr-2">
               <FontAwesomeIcon icon={faCreditCard} />
               Proceed to Buy
-            </Button>
+            </Button> */}
+            <button 
+              onClick={handleOpenAddressForm}
+              className='inline-block px-6 py-2 duration-200 bg-customGold hover:bg-customPurple mx-1 rounded-full text-white font-bold'>
+              <FontAwesomeIcon icon={faCreditCard} className="mr-2" />
+                Proceed to Buy
+            </button>
           </div>
-
+          {
+            takeAddress && (
+              <div className="modal">
+                <div className="modal-content">
+                  <p>Do you want to log out?</p>
+                  <Button type="submit" onClick={createOrderWithPaypal}>
+                  <FontAwesomeIcon icon={faPaypal} className="mr-2" />
+                    Buy With PayPal
+                  </Button> 
+                  <button type="submit" onClick={handleClose}>
+                    No
+                  </button>
+                </div>
+              </div>
+            )
+          }
         </Container>
       ) : (
         <p className="text-center text-gray-500">Your cart is empty.</p> // Fallback for empty cart

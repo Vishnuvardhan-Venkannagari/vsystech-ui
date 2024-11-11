@@ -1,3 +1,4 @@
+import { json } from "react-router-dom";
 import conf from "../conf/conf.js";
 import axios from "axios";
 
@@ -97,6 +98,30 @@ export class CartInterface {
             return []
         }
         
+    }
+
+    async createPaymentOrder(data){
+        try {
+            const createOrder = await fetch("/api/payments/createPayment", {
+                method: "POST",
+                headers: {
+                    "authtoken": data.authtoken ,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(
+                    {
+                        gateway_name: data.gateway_name
+                    }
+                )
+            })
+            console.log("Onse")
+            if (createOrder.status === 200){
+                return await createOrder.json()
+            }
+        } catch (error) {
+            console.log("Error occured", error.message)
+            return []
+        }
     }
 }
 

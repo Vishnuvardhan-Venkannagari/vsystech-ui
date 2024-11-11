@@ -66,3 +66,38 @@
     text-align: center;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   }
+
+  .modal-content {
+    position: fixed;
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    width: 400px; /* or try width: 50%; */
+    height: 20%;
+    text-align: center;
+    
+}
+
+  
+  .modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    width: 100;
+    text-align: center;
+  }
+  
+  .modal-content button {
+    margin: 10px;
+    /* margin-top: 3px; */
+    padding: 8px 12px;
+    background-color: #3b82f6;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+  }
+
+  .modal-content button:hover {
+    background-color: green;
+  }
