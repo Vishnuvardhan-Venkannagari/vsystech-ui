@@ -18,7 +18,6 @@ export default function Product({prod}) {
     const checkcart = async() =>{
       const input2 = {prod_id: prod.id, authtoken: authtoken, uid: authData.user_id}
       const fromCart =  await cartService.checkInCart(input2)
-      console.log(fromCart.data.length !== 0)
       if (fromCart.data && fromCart.data.length !== 0) {setInCart(true)}
     }
     if (prod.id) checkcart()
@@ -54,7 +53,7 @@ export default function Product({prod}) {
         {
           inCart ? 
           <Button type="submit" onClick={handleSubmit(AddToCart)} disabled={inCart}>  
-            <FontAwesomeIcon icon={faCartShopping} className="mr-2"  />  Incart
+            <FontAwesomeIcon icon={faCartShopping} className="mr-2"  />  Already In Cart
           </Button>
           : 
           <Button type="submit" onClick={handleSubmit(AddToCart)} disabled={inCart}>  

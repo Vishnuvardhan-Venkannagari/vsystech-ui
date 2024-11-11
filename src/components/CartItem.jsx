@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import "./CartItem.css"
 import { useForm } from "react-hook-form"
+import Input from "./Input.jsx"
 import Button from "./Button.jsx"
 import cartService from '../apiInterface/cart.js'
 import { useSelector } from "react-redux"
@@ -38,12 +39,12 @@ export default function CartItem({item}) {
         </Button>
         {isRemoved && (
             <div className="modal">
-            <div className="modal-content">
-                <p>Removed from cart successfully!</p>
-                <Button type="submit" onClick={handleClose}>
-                OK
-                </Button>
-            </div>
+              <div className="modal-content">
+                  <p>Removed from cart successfully!</p>
+                  <Button type="submit" onClick={handleClose}>
+                    OK
+                  </Button>
+              </div>
             </div>
         )}
       </div>
