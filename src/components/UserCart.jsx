@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form"
 import Button from "./Button.jsx"
 import Input from "./Input.jsx"
 import AddressForm from './AddressForm.jsx'
-import { faCreditCard, faPaypal } from '@fortawesome/free-solid-svg-icons';
+import { faCreditCard } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function UserCart() {
@@ -108,7 +108,7 @@ export default function UserCart() {
                 <div className="modal-content">
                   <p>Do you want to log out?</p>
                   <Button type="submit" onClick={createOrderWithPaypal}>
-                  <FontAwesomeIcon icon={faPaypal} className="mr-2" />
+                  {/* <FontAwesomeIcon icon={faPaypal} className="mr-2" /> */}
                     Buy With PayPal
                   </Button> 
                   <button type="submit" onClick={handleClose}>
