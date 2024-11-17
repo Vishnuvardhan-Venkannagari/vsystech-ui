@@ -1,6 +1,6 @@
 import React from 'react'
 import { VerifyPurchase as VerifyPurchaseComponent } from '../components'
-export default function VerifyPurchase() {
+export default function VerifyPayment() {
   return (
     <div>
       <VerifyPurchaseComponent />
