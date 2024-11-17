@@ -49,7 +49,6 @@ export default function Product({prod}) {
         <h1>{prod.name}</h1>
         <p>{prod.short_description}</p>
         <h3>Price: ${prod.price}</h3>
-        
         {
           inCart ? 
           <Button type="submit" onClick={handleSubmit(AddToCart)} disabled={inCart}>  
@@ -60,6 +59,7 @@ export default function Product({prod}) {
             <FontAwesomeIcon icon={faCartPlus} className="mr-2"  />  Add to Cart
           </Button>
         }
+        {/* <p>Color: {prod.attributes.color}</p> */}
 
         {isAdded && (
         <div className="modal">
