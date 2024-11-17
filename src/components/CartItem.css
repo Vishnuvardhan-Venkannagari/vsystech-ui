@@ -29,11 +29,11 @@
     font-weight: bold;
   }
   .cart-container img {
-    width: 40%; /* Set width to 40% of the container */
-    height: 50%; 
+    width: 150px; /* Set width */
+    height: 150px; 
     border-radius: 10px;
     margin-right: 20px;
-    object-fit: cover;
+    object-fit: contain;
   }
   .cart-details {
     flex: 1; 

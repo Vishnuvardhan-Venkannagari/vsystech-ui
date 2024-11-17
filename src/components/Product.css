@@ -17,11 +17,11 @@
     font-weight: bold;
   }
   .product-container img {
-    width: 200px; /* Set width to 40% of the container */
+    width: 200px; 
     height: 200px; 
     border-radius: 10px;
     margin-right: 20px;
-    object-fit: cover;
+    object-fit: contain;
   }
   .product-details {
     flex: 1; 

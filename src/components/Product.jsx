@@ -26,7 +26,6 @@ export default function Product({prod}) {
   const AddToCart = async() => {
     const input = {id: prod.id, authtoken: authtoken}
     const addcartresponse = await cartService.addtoCart(input)
-    window.location.reload();
     if (addcartresponse) {
       setIsAdded(true)
       return "Added to cart successfully"
@@ -39,6 +38,7 @@ export default function Product({prod}) {
   }
 
   const handleClose = () => {
+    window.location.reload();
     setIsAdded(false) 
   }
 
