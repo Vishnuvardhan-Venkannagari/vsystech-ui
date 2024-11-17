@@ -25,6 +25,7 @@ export default function CartItem({item}) {
         setIsRemoved(false) 
         window.location.reload()
         navigate('/');
+        
       }
   return (
     <div className='cart-container'>
