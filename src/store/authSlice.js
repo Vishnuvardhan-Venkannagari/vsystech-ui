@@ -11,17 +11,25 @@ const authSlicer = createSlice({
     initialState,
     reducers: {
         logIn: (state, action) => {
-            state.status = action.payload.payload.status !== undefined ? action.payload.payload.status : true;
-            state.userData = action.payload.payload.userData
-            state.authtoken = action.payload.payload.authtoken
+            const { payload } = action;
+            // state.status = action.payload.payload.status !== undefined ? action.payload.payload.status : true;
+            state.status = payload?.status || false;
+            state.userData = payload?.userData || null;
+            state.authtoken = payload?.authtoken || null;
         },
         logOut: (state) => {
             state.status = false
             state.userData = null
             state.authtoken = null
+        },
+        setAuth: (state, action) => {
+            state.status = action.payload
+        },
+        setUser: (state, action) => {
+            state.user = action.payload
         }
     }
 })
 
-export const { logIn, logOut } = authSlicer.actions
+export const { logIn, logOut, setAuth, setUser } = authSlicer.actions
 export default authSlicer.reducer 

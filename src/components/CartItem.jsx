@@ -23,7 +23,7 @@ export default function CartItem({item}) {
     }
     const handleClose = () => {
         setIsRemoved(false) 
-        // window.location.reload()
+        window.location.reload()
         navigate('/');
       }
   return (

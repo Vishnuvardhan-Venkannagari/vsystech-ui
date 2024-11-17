@@ -23,7 +23,7 @@ export class AuthInterface {
             });
             if (response.status === 200) {
                 const data = await response.json()
-                localStorage.setItem('authtoken', data.token);
+                // localStorage.setItem('authtoken', data.token);
                 return data
             }
         } catch (error) {

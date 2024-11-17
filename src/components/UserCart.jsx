@@ -6,6 +6,7 @@ import CartItem from "./CartItem.jsx"
 import "./UserCart.css"
 import { useForm } from "react-hook-form"
 import Button from "./Button.jsx"
+import { Link, useNavigate } from "react-router-dom"
 import Input from "./Input.jsx"
 import AddressForm from './AddressForm.jsx'
 import { faCreditCard } from '@fortawesome/free-solid-svg-icons';
@@ -18,7 +19,7 @@ export default function UserCart() {
   const [loading, setLoading] = useState(true);
   const { register, handleSubmit, formState: { errors } } = useForm() 
   const [takeAddress, setTakeAddress] = useState(false);
-  
+  const navigate = useNavigate()
   const [totalPrice, setTotalPrice] = useState(0)
   const [totalItems, setTotalItems] = useState(0)
   useEffect(() => {
@@ -56,9 +57,16 @@ export default function UserCart() {
 
   const createOrderWithPaypal = async() => {
     const data = {gateway_name: "PayPal", authtoken: authtoken}
-    console.log(data)
     const getOrderDetails = await cartService.createPaymentOrder(data)
     console.log(getOrderDetails)
+    if (getOrderDetails) {
+      console.log(window.location.origin)
+      // navigate(`${getOrderDetails.approve_url}`);
+      //window.open(getOrderDetails.approve_url, '_blank'); 
+      // navigate(getOrderDetails.approve_url, "_blank")
+      window.location.href = getOrderDetails.approve_url
+
+    }
   }
   
   return (

@@ -73,7 +73,7 @@
     padding: 20px;
     border-radius: 5px;
     width: 400px; /* or try width: 50%; */
-    height: 20%;
+    height: auto;
     text-align: center;
     
 }

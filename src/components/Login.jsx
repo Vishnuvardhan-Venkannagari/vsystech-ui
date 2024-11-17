@@ -30,7 +30,8 @@ export default function Login() {
             if (session) {
                 const currentUser = await authservice.getCurrentUser(session.token)
                 const payload = {userData: currentUser, authtoken: session.token}
-                // localStorage.setItem('authtoken', session.token);
+                localStorage.setItem('authtoken', session.token);
+                localStorage.setItem('userData', JSON.stringify(currentUser));
                 // const isauth = sessionStorage.setItem('user', session.token)
                 // console.log(currentUser, isauth)
                 if (currentUser) {

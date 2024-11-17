@@ -44,7 +44,6 @@ export class CartInterface {
 
     async removeItemFromCart(data){
         try {
-            console.log(data.authtoken)
             const reqRemoveCartItem = await fetch("/api/cart/removeCartItem", {
                 method: "POST",
                 headers: {
@@ -102,6 +101,7 @@ export class CartInterface {
 
     async createPaymentOrder(data){
         try {
+            console.log(data)
             const createOrder = await fetch("/api/payments/createPayment", {
                 method: "POST",
                 headers: {
@@ -114,10 +114,10 @@ export class CartInterface {
                     }
                 )
             })
-            console.log("Onse")
             if (createOrder.status === 200){
                 return await createOrder.json()
             }
+            return {}
         } catch (error) {
             console.log("Error occured", error.message)
             return []
