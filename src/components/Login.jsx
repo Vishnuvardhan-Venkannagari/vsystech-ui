@@ -30,8 +30,16 @@ export default function Login() {
             if (session) {
                 const currentUser = await authservice.getCurrentUser(session.token)
                 const payload = {userData: currentUser, authtoken: session.token}
-                localStorage.setItem('authtoken', session.token);
-                localStorage.setItem('userData', JSON.stringify(currentUser));
+                let prefix  
+                const host = window.location.hostname
+                if (host === "localhost") {
+                    prefix = "dev_"
+                }
+                else{
+                    prefix = "prod_"
+                }
+                sessionStorage.setItem(`${prefix}authtoken`, session.token);
+                sessionStorage.setItem(`${prefix}userData`, JSON.stringify(currentUser));
                 // const isauth = sessionStorage.setItem('user', session.token)
                 // console.log(currentUser, isauth)
                 if (currentUser) {
@@ -42,7 +50,7 @@ export default function Login() {
                     // if (!isauth) navigate('/login')
                     navigate("/")
                 }else{
-                    localStorage.removeItem('authToken');
+                    sessionStorage.removeItem(`${prefix}authtoken`);
                     navigate("/login")
                 }
             }

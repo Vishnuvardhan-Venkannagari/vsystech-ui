@@ -16,9 +16,18 @@ function App() {
   const navigate = useNavigate();
   const location = useLocation();
   useEffect(() =>{
-    const token = localStorage.getItem('authtoken')
+    let prefix  // === 'localhost' ? 'dev_' : 'prod_';
+                // console.log(prefix)
+    const host = window.location.hostname
+    if (host === "localhost") {
+        prefix = "dev_"
+    }
+    else{
+        prefix = "prod_"
+    }
+    const token = sessionStorage.getItem(`${prefix}authtoken`)
     if (token) {
-      const user = JSON.parse(localStorage.getItem('userData'))
+      const user = JSON.parse(sessionStorage.getItem(`${prefix}userData`))
       dispatch(setAuth(true))  
       dispatch(setUser(user)) 
       dispatch(setToken(token))  

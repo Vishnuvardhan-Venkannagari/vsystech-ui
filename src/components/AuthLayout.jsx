@@ -11,9 +11,17 @@ export default function AuthLayout({children, authentication=true}) {
   const dispatch = useDispatch()
   const [loader ,setLoader] = useState()
   useEffect(() => {
-    const token = localStorage.getItem('authtoken')
+    let prefix 
+    const host = window.location.hostname
+    if (host === "localhost") {
+        prefix = "dev_"
+    }
+    else{
+        prefix = "prod_"
+    }
+    const token = sessionStorage.getItem(`${prefix}authtoken`)
     if (token) {
-      const user = JSON.parse(localStorage.getItem('userData'))
+      const user = JSON.parse(sessionStorage.getItem(`${prefix}userData`))
       dispatch(setAuth(true))  // Set authentication status to true
       dispatch(setUser(user))  // Set the user info in Redux store
     }

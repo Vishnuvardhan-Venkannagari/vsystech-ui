@@ -24,8 +24,16 @@ export default function SignUp() {
             if (session) {
                 navigate(`/user/profile/${session.user_data.user_id}`)
                 const payload = {userData: session.user_data, authtoken: session.authtoken, status: false}
-                localStorage.setItem('authtoken', session.authtoken);
-                localStorage.setItem('userData', JSON.stringify(session.user_data));
+                let prefix 
+                const host = window.location.hostname
+                if (host === "localhost") {
+                    prefix = "dev_"
+                }
+                else{
+                    prefix = "prod_"
+                }
+                sessionStorage.setItem(`${prefix}authtoken`, session.authtoken);
+                sessionStorage.setItem(`${prefix}userData`, JSON.stringify(session.user_data));
                 dispatch(authLogin({ payload }))
                 // navigate("/")
             }

@@ -11,7 +11,16 @@ export default function LogOutBtn() {
     const dispatch = useDispatch()
     const [isLogout, setIsLogout] = useState(false)
     const logoutHandler = () => {
-        localStorage.removeItem('authToken');
+        let prefix
+        const host = window.location.hostname
+        if (host === "localhost") {
+            prefix = "dev_"
+        }
+        else{
+            prefix = "prod_"
+        }
+        sessionStorage.removeItem(`${prefix}authtoken`);
+        sessionStorage.removeItem(`${prefix}userData`)
         authservice.logOut().then(() => {
             dispatch(logOut())
         })
