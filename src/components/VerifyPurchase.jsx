@@ -2,8 +2,8 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { useDispatch } from "react-redux"
 import { useNavigate, useLocation } from "react-router-dom"
-import { logIn, logOut } from "./store/authSlice"
-import { setAuth, setUser } from "./store/authSlice.js" 
+import { logIn, logOut } from "../store/authSlice"
+import { setAuth, setUser } from "../store/authSlice.js" 
 
 export default function VerifyPurchase() {
     const [loading, setLoading] = useState(true)
