@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import authservice from '../apiInterface/auth.js'
-import { Link, useNavigate, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import Button from "./Button.jsx"
 import Input from "./Input.jsx"
-// import Logo from "./Logo"
 import { useForm } from "react-hook-form"
 import { useDispatch, useSelector} from "react-redux"
 import { logIn as authLogin } from "../store/authSlice.js"

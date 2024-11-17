@@ -5,6 +5,7 @@ import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { setAuth, setUser } from "../store/authSlice" 
 import { useDispatch } from "react-redux"
+
 export default function AuthLayout({children, authentication=true}) {
   const authStatus = useSelector((state) => state.auth.status)  
   const navigate = useNavigate()
@@ -22,8 +23,8 @@ export default function AuthLayout({children, authentication=true}) {
     const token = sessionStorage.getItem(`${prefix}authtoken`)
     if (token) {
       const user = JSON.parse(sessionStorage.getItem(`${prefix}userData`))
-      dispatch(setAuth(true))  // Set authentication status to true
-      dispatch(setUser(user))  // Set the user info in Redux store
+      dispatch(setAuth(true))
+      dispatch(setUser(user))
     }
     if (authentication && authStatus !== authentication){
       navigate("/login")

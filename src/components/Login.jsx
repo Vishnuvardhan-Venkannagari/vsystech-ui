@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import authservice from '../apiInterface/auth.js'
 import { Link, useNavigate } from "react-router-dom"
 import Button from "./Button.jsx"
 import Input from "./Input.jsx"
-// import Logo from "./Logo"
 import { useForm } from "react-hook-form"
 import { useDispatch, useSelector } from "react-redux"
 import { logIn as authLogin } from "../store/authSlice.js"
@@ -17,9 +16,6 @@ export default function Login() {
     const { register, handleSubmit, formState: { errors } } = useForm()
     const [loading, setLoading] = useState(false)
 
-    // useEffect(() => {
-    //     localStorage.setItem('user', JSON.stringify(user));
-    // })
 
     const login = async (data) => {
         setError("")
@@ -40,14 +36,8 @@ export default function Login() {
                 }
                 sessionStorage.setItem(`${prefix}authtoken`, session.token);
                 sessionStorage.setItem(`${prefix}userData`, JSON.stringify(currentUser));
-                // const isauth = sessionStorage.setItem('user', session.token)
-                // console.log(currentUser, isauth)
                 if (currentUser) {
                     dispatch(authLogin({ payload }))
-                    // localStorage.setItem('user', session.token);
-                    // isauth = sessionStorage.setItem('user', session.token)
-                    // console(isauth, userData)
-                    // if (!isauth) navigate('/login')
                     navigate("/")
                 }else{
                     sessionStorage.removeItem(`${prefix}authtoken`);
@@ -64,20 +54,6 @@ export default function Login() {
         }
     }
     
-    // useEffect(() => {
-    //     const token = localStorage.getItem('authToken');
-    //     console.log(token)
-    //     if (token) {
-    //         authservice.getCurrentUser(token).then((currentUser) => {
-    //             if (currentUser) {
-    //                 dispatch(authLogin({ userData: currentUser, authtoken: token }));
-    //             } else {
-    //                 localStorage.removeItem('authToken');
-    //             }
-    //         });
-    //     }
-    // }, [dispatch]);
-
     return (
         <div className='flex items-center justify-center w-full py-8'>
             <div className='login-container'>

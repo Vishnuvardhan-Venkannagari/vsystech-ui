@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { Link, useNavigate, useParams } from "react-router-dom"
 import { useForm } from "react-hook-form"
 import authservice from '../apiInterface/auth.js'
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import "./UserProfile.css"
 import Button from "./Button.jsx"
 

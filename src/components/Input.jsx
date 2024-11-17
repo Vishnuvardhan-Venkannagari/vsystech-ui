@@ -8,7 +8,6 @@ const Input = React.forwardRef( function Input(
     }, 
     ref){
         const labelId = useId()
-        //{`w-full ${className}`}
         return (
             <div className='w-full'>
                 {label && (

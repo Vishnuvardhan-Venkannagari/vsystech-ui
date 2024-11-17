@@ -1,8 +1,5 @@
 import { useState, useEffect } from 'react'
 import authservice from './apiInterface/auth.js'
-// import { logOut } from '../../store/authSlice.js'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import { Outlet } from 'react-router-dom'
 import Header from './components/Header/Header.jsx'
@@ -16,8 +13,7 @@ function App() {
   const navigate = useNavigate();
   const location = useLocation();
   useEffect(() =>{
-    let prefix  // === 'localhost' ? 'dev_' : 'prod_';
-                // console.log(prefix)
+    let prefix
     const host = window.location.hostname
     if (host === "localhost") {
         prefix = "dev_"

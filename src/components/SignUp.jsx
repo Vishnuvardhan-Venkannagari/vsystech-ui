@@ -3,7 +3,6 @@ import authservice from '../apiInterface/auth.js'
 import { Link, useNavigate } from "react-router-dom"
 import Button from "./Button.jsx"
 import Input from "./Input.jsx"
-// import Logo from "./Logo"
 import { useForm } from "react-hook-form"
 import { useDispatch } from "react-redux"
 import { logIn as authLogin } from "../store/authSlice.js"
@@ -35,7 +34,6 @@ export default function SignUp() {
                 sessionStorage.setItem(`${prefix}authtoken`, session.authtoken);
                 sessionStorage.setItem(`${prefix}userData`, JSON.stringify(session.user_data));
                 dispatch(authLogin({ payload }))
-                // navigate("/")
             }
         } catch (error) {
             setError(error.message)
