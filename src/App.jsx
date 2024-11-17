@@ -9,7 +9,7 @@ import Header from './components/Header/Header.jsx'
 import { useDispatch } from "react-redux"
 import { useNavigate, useLocation } from "react-router-dom"
 import { logIn, logOut } from "./store/authSlice"
-import { setAuth, setUser } from "./store/authSlice.js" 
+import { setAuth, setUser, setToken } from "./store/authSlice.js" 
 function App() {
   const [loading, setLoading] = useState(true)
   const dispatch = useDispatch()
@@ -20,7 +20,8 @@ function App() {
     if (token) {
       const user = JSON.parse(localStorage.getItem('userData'))
       dispatch(setAuth(true))  
-      dispatch(setUser(user))  
+      dispatch(setUser(user)) 
+      dispatch(setToken(token))  
       const payload = {userData: user, authtoken: token, status: true}
       dispatch(logIn(payload))
       setLoading(false)
