@@ -27,7 +27,7 @@ export default function VerifyPurchase() {
           const getVerifyDetails = await cartService.verifyPayment({authtoken: authtoken, payment_id: token})
           console.log(getVerifyDetails)
         }
-
+        if (token) verify()
     }, [dispatch, location])
   return (
     <div>verifyPurchase</div>
