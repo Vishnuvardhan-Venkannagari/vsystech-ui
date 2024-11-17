@@ -17,8 +17,8 @@
     font-weight: bold;
   }
   .product-container img {
-    width: 40%; /* Set width to 40% of the container */
-    height: 50%; 
+    width: 200px; /* Set width to 40% of the container */
+    height: 200px; 
     border-radius: 10px;
     margin-right: 20px;
     object-fit: cover;
