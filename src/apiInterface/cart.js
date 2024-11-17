@@ -123,6 +123,31 @@ export class CartInterface {
             return []
         }
     }
+
+    async verifyPayment(data){
+        try {
+            console.log(data)
+            const verifyOrder = await fetch("/api/payments/verifyPayment", {
+                method: "POST",
+                headers: {
+                    "authtoken": data.authtoken ,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(
+                    {
+                        payment_id: data.payment_id
+                    }
+                )
+            })
+            if (verifyOrder.status === 200){
+                return await verifyOrder.json()
+            }
+            return {}
+        } catch (error) {
+            console.log("Error occured", error.message)
+            return []
+        }
+    }
 }
 
 
