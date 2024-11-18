@@ -69,7 +69,14 @@ export default function UserCart() {
       ws.onmessage = (event) => {
         const data = JSON.parse(event.data);
         console.log(data)
-        newWindow.close()
+        // newWindow.close()
+        if (data.status === 'success') {
+          console.log("Closing new window as the payment is completed.");
+          console.log(newWindow)
+          if (newWindow) {
+              newWindow.close();
+          }
+        }
       }
     }
   }
