@@ -131,7 +131,11 @@ export default function UserCart() {
             isPurchased && (
               <div className="modal">
                 <div className="modal-content">
-                  <p>Do you want to purchase?</p>
+                  <img src='../../payment_success_image.png' alt=""/>
+                  <p>Your Purchase is success</p>
+                  <Button type="submit">
+                    view orders
+                  </Button>
                 </div>
               </div>
             )
