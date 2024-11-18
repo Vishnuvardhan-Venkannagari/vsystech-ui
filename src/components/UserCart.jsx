@@ -61,7 +61,7 @@ export default function UserCart() {
     console.log(getOrderDetails)
     if (getOrderDetails) {
       console.log(window.location.origin)
-      const ws = new WebSocket(`ws://app.vsystech.net/ws/${getOrderDetails.order_id}`);
+      const ws = new WebSocket(`wss://app.vsystech.net/ws/${getOrderDetails.order_id}`);
       console.log(ws)
       // window.location.href = getOrderDetails.approve_url
       var newWindow = window.open(getOrderDetails.approve_url, '_blank');
