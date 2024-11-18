@@ -11,6 +11,7 @@ import Input from "./Input.jsx"
 import AddressForm from './AddressForm.jsx'
 import { faCreditCard } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import paymentSuccessImage from "../../payment_success_image.png"
 
 export default function UserCart() {
   const authtoken = useSelector((state) => state.auth.authtoken)
@@ -131,7 +132,8 @@ export default function UserCart() {
             isPurchased && (
               <div className="modal">
                 <div className="modal-content">
-                  <img src='../../payment_success_image.png' alt="Payment Success..." />
+                  {/* <img src='../../payment_success_image.png' alt="Payment Success..." /> */}
+                  <img src={paymentSuccessImage} alt='Payment Success...' />
                   <p>Your Purchase is success</p>
                   <Button type="submit">
                     view orders
