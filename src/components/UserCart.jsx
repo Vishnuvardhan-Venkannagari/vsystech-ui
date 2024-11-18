@@ -131,7 +131,7 @@ export default function UserCart() {
             isPurchased && (
               <div className="modal">
                 <div className="modal-content">
-                  <img src='../../payment_success_image.png' alt=""/>
+                  <img src='../../payment_success_image.png' alt="Payment Success..." />
                   <p>Your Purchase is success</p>
                   <Button type="submit">
                     view orders
