@@ -61,16 +61,13 @@ export default function UserCart() {
     const getOrderDetails = await cartService.createPaymentOrder(data)
     console.log(getOrderDetails)
     if (getOrderDetails) {
-      // console.log(window.location.origin)
-      const myorigin = window.location.origin
+      // const myorigin = window.location.origin
       const ws = new WebSocket(`wss://app.vsystech.net/ws/${getOrderDetails.order_id}`);
       // window.location.href = getOrderDetails.approve_url
       var newWindow = window.open(getOrderDetails.approve_url, '_blank');
-      // const ws = new WebSocket(`ws://app.vsystech.net/ws/${getOrderDetails.order_id}`);
       ws.onmessage = (event) => {
         const data = JSON.parse(event.data);
         console.log(data)
-        // newWindow.close()
         if (data.status === 'success') {
           console.log("Closing new window as the payment is completed.");
           console.log(newWindow)
@@ -80,12 +77,6 @@ export default function UserCart() {
               setclickedPayNow(false)
               setIsPurchased(true)
           }
-        //   if (newWindow) {
-        //     setTimeout(() => {
-        //         newWindow.close();
-        //         console.log("Window closed status after delay:", newWindow.closed);
-        //     }, 1000); // Delay for 1 second
-        // }
         }
       }
     }
@@ -107,24 +98,12 @@ export default function UserCart() {
           <div className='price-container'>
             <h1>Total Items Selected: </h1>
             <h2>{totalItems}</h2>
-            
-            {/* {clickedPayNow && (
-              <div className="modal-overlay">
-                <div className="modal-content">
-                  <AddressForm />
-                </div>
-              </div>
-            )} */}
           </div>
           <div className='price-container'>
             <h1>Total Price: </h1>
             <h3>{totalPrice}</h3>
           </div>
           <div className='button-container'>
-            {/* <Button type="submit" onClick={handleOpenAddressForm} className="mr-2">
-              <FontAwesomeIcon icon={faCreditCard} />
-              Proceed to Buy
-            </Button> */}
             <button 
               onClick={handleOpenAddressForm}
               className='inline-block px-6 py-2 duration-200 bg-customGold hover:bg-customPurple mx-1 rounded-full text-white font-bold'>
