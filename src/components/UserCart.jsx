@@ -60,11 +60,12 @@ export default function UserCart() {
     const getOrderDetails = await cartService.createPaymentOrder(data)
     console.log(getOrderDetails)
     if (getOrderDetails) {
-      console.log(window.location.origin)
+      // console.log(window.location.origin)
+      const myOrigin = window.location.origin
+      console.log(myOrigin)
       const ws = new WebSocket(`wss://app.vsystech.net/ws/${getOrderDetails.order_id}`);
-      console.log(ws)
-      // window.location.href = getOrderDetails.approve_url
-      var newWindow = window.open(getOrderDetails.approve_url, '_blank');
+      window.location.href = getOrderDetails.approve_url
+      // var newWindow = window.open(getOrderDetails.approve_url, '_blank');
       // const ws = new WebSocket(`ws://app.vsystech.net/ws/${getOrderDetails.order_id}`);
       ws.onmessage = (event) => {
         const data = JSON.parse(event.data);
@@ -73,16 +74,8 @@ export default function UserCart() {
         if (data.status === 'success') {
           console.log("Closing new window as the payment is completed.");
           console.log(newWindow)
-          if (newWindow && !newWindow.closed) {
-              newWindow.close();
-              console.log(newWindow)
-          }
-          if (newWindow) {
-            setTimeout(() => {
-                newWindow.close();
-                console.log("Window closed status after delay:", newWindow.closed);
-            }, 1000); // Delay for 1 second
-        }
+          
+          window.location.href = `${myOrigin}/cart`
         }
       }
     }
