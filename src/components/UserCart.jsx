@@ -61,11 +61,13 @@ export default function UserCart() {
     console.log(getOrderDetails)
     if (getOrderDetails) {
       console.log(window.location.origin)
-      // navigate(`${getOrderDetails.approve_url}`);
-      //window.open(getOrderDetails.approve_url, '_blank'); 
-      // navigate(getOrderDetails.approve_url, "_blank")
-      window.location.href = getOrderDetails.approve_url
-
+      // window.location.href = getOrderDetails.approve_url
+      var newWindow = window.open(getOrderDetails.approve_url, '_blank');
+      const ws = new WebSocket(`ws://app.vsystech.net/ws/${getOrderDetails.order_id}`);
+      ws.onmessage = (event) => {
+        const data = JSON.parse(event.data);
+        newWindow.close()
+      }
     }
   }
   
