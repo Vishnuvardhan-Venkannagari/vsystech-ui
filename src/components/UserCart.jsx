@@ -75,6 +75,7 @@ export default function UserCart() {
           console.log(newWindow)
           if (newWindow) {
               newWindow.close();
+              console.log(newWindow)
           }
         }
       }
