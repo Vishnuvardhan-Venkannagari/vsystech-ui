@@ -52,7 +52,7 @@ export default function Product({prod}) {
         {
           inCart ? 
           <Button type="submit" onClick={handleSubmit(AddToCart)} disabled={inCart}>  
-            <FontAwesomeIcon icon={faCartShopping} className="mr-2"  />  Already In Cart
+            <FontAwesomeIcon icon={faCartShopping} className="mr-2"  />  Added to Cart
           </Button>
           : 
           <Button type="submit" onClick={handleSubmit(AddToCart)} disabled={inCart}>  

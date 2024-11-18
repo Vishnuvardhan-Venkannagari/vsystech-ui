@@ -68,6 +68,7 @@ export default function UserCart() {
       // const ws = new WebSocket(`ws://app.vsystech.net/ws/${getOrderDetails.order_id}`);
       ws.onmessage = (event) => {
         const data = JSON.parse(event.data);
+        console.log(data)
         newWindow.close()
       }
     }
@@ -118,7 +119,7 @@ export default function UserCart() {
             takeAddress && (
               <div className="modal">
                 <div className="modal-content">
-                  <p>Do you want to log out?</p>
+                  <p>Do you want to purchase?</p>
                   <Button type="submit" onClick={createOrderWithPaypal}>
                   {/* <FontAwesomeIcon icon={faPaypal} className="mr-2" /> */}
                     Buy With PayPal
