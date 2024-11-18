@@ -73,10 +73,16 @@ export default function UserCart() {
         if (data.status === 'success') {
           console.log("Closing new window as the payment is completed.");
           console.log(newWindow)
-          if (newWindow) {
+          if (newWindow && !newWindow.closed) {
               newWindow.close();
               console.log(newWindow)
           }
+          if (newWindow) {
+            setTimeout(() => {
+                newWindow.close();
+                console.log("Window closed status after delay:", newWindow.closed);
+            }, 1000); // Delay for 1 second
+        }
         }
       }
     }
