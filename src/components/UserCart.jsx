@@ -18,7 +18,8 @@ export default function UserCart() {
   const [cartItems, setCartItems] = useState([])
   const [loading, setLoading] = useState(true);
   const { register, handleSubmit, formState: { errors } } = useForm() 
-  const [takeAddress, setTakeAddress] = useState(false);
+  const [clickedPayNow, setclickedPayNow] = useState(false);
+  const [isPurchased, setIsPurchased] = useState(false);
   const navigate = useNavigate()
   const [totalPrice, setTotalPrice] = useState(0)
   const [totalItems, setTotalItems] = useState(0)
@@ -48,11 +49,11 @@ export default function UserCart() {
   }, [authtoken])
 
   const handleOpenAddressForm = () => {
-    setTakeAddress(true)
+    setclickedPayNow(true)
     return "Clicked on logout succesfully"
   }
   const handleClose = () => {
-    setTakeAddress(false) 
+    setclickedPayNow(false) 
   }
 
   const createOrderWithPaypal = async() => {
@@ -76,6 +77,8 @@ export default function UserCart() {
           if (newWindow && !newWindow.closed) {
               newWindow.close();
               console.log(newWindow)
+              setclickedPayNow(false)
+              setIsPurchased(true)
           }
         //   if (newWindow) {
         //     setTimeout(() => {
@@ -105,7 +108,7 @@ export default function UserCart() {
             <h1>Total Items Selected: </h1>
             <h2>{totalItems}</h2>
             
-            {/* {takeAddress && (
+            {/* {clickedPayNow && (
               <div className="modal-overlay">
                 <div className="modal-content">
                   <AddressForm />
@@ -130,7 +133,7 @@ export default function UserCart() {
             </button>
           </div>
           {
-            takeAddress && (
+            clickedPayNow && (
               <div className="modal">
                 <div className="modal-content">
                   <p>Do you want to purchase?</p>
@@ -141,6 +144,15 @@ export default function UserCart() {
                   <button type="submit" onClick={handleClose}>
                     No
                   </button>
+                </div>
+              </div>
+            )
+          }
+          {
+            isPurchased && (
+              <div className="modal">
+                <div className="modal-content">
+                  <p>Do you want to purchase?</p>
                 </div>
               </div>
             )
