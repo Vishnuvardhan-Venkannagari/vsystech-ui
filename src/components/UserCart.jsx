@@ -142,7 +142,7 @@ export default function UserCart() {
                   <Button type="submit">
                     view orders
                   </Button>
-                  <Button type="submit" onClick={handleClose}>
+                  <Button type="submit" onClick={handlePaymentSuccessClose}>
                     Close
                   </Button>
                 </div>
