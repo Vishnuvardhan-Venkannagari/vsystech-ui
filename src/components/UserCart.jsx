@@ -83,6 +83,16 @@ export default function UserCart() {
               setIsPurchased(true)
           }
         }
+        if (data.status === 'failed') {
+          console.log("Closing new window as the payment is completed.");
+          console.log(newWindow)
+          if (newWindow && !newWindow.closed) {
+              newWindow.close();
+              console.log(newWindow)
+              // setclickedPayNow(false)
+              // setIsPurchased(true)
+          }
+        }
       }
     }
   }
