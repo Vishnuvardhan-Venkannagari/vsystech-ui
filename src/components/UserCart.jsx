@@ -56,6 +56,10 @@ export default function UserCart() {
   const handleClose = () => {
     setclickedPayNow(false) 
   }
+  const handlePaymentSuccessClose = () => {
+    setIsPurchased(false) 
+  }
+
 
   const createOrderWithPaypal = async() => {
     const data = {gateway_name: "PayPal", authtoken: authtoken}
@@ -137,6 +141,9 @@ export default function UserCart() {
                   <p>Your Purchase is success</p>
                   <Button type="submit">
                     view orders
+                  </Button>
+                  <Button type="submit" onClick={handleClose}>
+                    Close
                   </Button>
                 </div>
               </div>

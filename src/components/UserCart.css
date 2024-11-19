@@ -101,3 +101,11 @@
   .modal-content button:hover {
     background-color: green;
   }
+
+  .modal-content img{
+    display: block; /* Ensures it's treated as a block element */
+    margin: 0 auto; /* Centers the image horizontally */
+    max-width: 100%; /* Ensures the image fits within the modal */
+    height: auto; /* Maintains aspect ratio */
+    margin-bottom: 20px; / 
+  }
