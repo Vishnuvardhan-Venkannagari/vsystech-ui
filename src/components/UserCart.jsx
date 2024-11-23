@@ -149,7 +149,7 @@ export default function UserCart() {
               </div>
               <div className="flex justify-between font-semibold text-lg mt-4 pt-4 border-t">
                 <span>Total</span>
-                <span>${subTotal + tax + paypal_fee + shippingPrice}</span>
+                <span>${totlaPrice}</span>
               </div>
             </div>
           </div>
