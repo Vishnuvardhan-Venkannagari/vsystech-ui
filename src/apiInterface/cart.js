@@ -101,7 +101,6 @@ export class CartInterface {
 
     async createPaymentOrder(data){
         try {
-            console.log(data)
             const createOrder = await fetch("/api/payments/createPayment", {
                 method: "POST",
                 headers: {
@@ -110,7 +109,8 @@ export class CartInterface {
                 },
                 body: JSON.stringify(
                     {
-                        gateway_name: data.gateway_name
+                        gateway_name: data.gateway_name,
+                        totla_price: data.orderPrice
                     }
                 )
             })

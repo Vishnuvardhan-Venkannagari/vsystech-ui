@@ -12,6 +12,7 @@ import AddressForm from './AddressForm.jsx'
 import { faCreditCard } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import paymentSuccessImage from "../../payment_success_image.png"
+import { FaStar, FaStarHalfAlt, FaRegStar, FaCreditCard, FaLock } from 'react-icons/fa';
 
 export default function UserCart() {
   const authtoken = useSelector((state) => state.auth.authtoken)
@@ -19,17 +20,23 @@ export default function UserCart() {
   const [cartItems, setCartItems] = useState([])
   const [loading, setLoading] = useState(true);
   const { register, handleSubmit, formState: { errors } } = useForm() 
-  const [clickedPayNow, setclickedPayNow] = useState(false);
+  // const [clickedPayNow, setclickedPayNow] = useState(false);
   const [isPurchased, setIsPurchased] = useState(false);
   const navigate = useNavigate()
-  const [totalPrice, setTotalPrice] = useState(0)
+  const [subTotal, setsubTotal] = useState(0)
+  const [totlaPrice, setTotlaPrice] = useState(0)
   const [totalItems, setTotalItems] = useState(0)
+  const [tax, setTax] = useState(0)
+  const shippingPrice = 5
+  const paypal_fee_percent = 0.029
+  const fixed_fee = 0.30
+  const [paypal_fee, setpaypal_fee] = useState(0)
+
   useEffect(() => {
     const fetchCart = async() => {
       try {
         setLoading(false)
         const cartResponse = await cartService.getUserCart(authtoken)
-        // console.log(cartResponse)
         if (cartResponse) {
           setCartItems(cartResponse)
           setTotalItems(cartResponse.length)
@@ -37,7 +44,12 @@ export default function UserCart() {
           cartResponse.map((item) => {
             addPrice = addPrice + item.productData.price
           })
-          setTotalPrice(addPrice)
+          setsubTotal(addPrice)
+          const calculatedTax = parseFloat((addPrice * 0.075).toFixed(2));
+          const calculatedPayPalFee = parseFloat((addPrice * paypal_fee_percent + fixed_fee).toFixed(2));
+          setTax(calculatedTax)
+          setpaypal_fee(calculatedPayPalFee)
+          setTotlaPrice(addPrice + tax + paypal_fee + 5 )
         }
       } catch (error) {
         console.error("Error fetching carts:", error.message) 
@@ -49,20 +61,20 @@ export default function UserCart() {
     }
   }, [authtoken])
 
-  const handleOpenAddressForm = () => {
-    setclickedPayNow(true)
-    return "Clicked on logout succesfully"
-  }
-  const handleClose = () => {
-    setclickedPayNow(false) 
-  }
+  // const handleOpenAddressForm = () => {
+  //   setclickedPayNow(true)
+  //   return "Clicked on logout succesfully"
+  // }
+  // const handleClose = () => {
+  //   setclickedPayNow(false) 
+  // }
   const handlePaymentSuccessClose = () => {
     setIsPurchased(false) 
   }
 
 
   const createOrderWithPaypal = async() => {
-    const data = {gateway_name: "PayPal", authtoken: authtoken}
+    const data = {gateway_name: "PayPal", authtoken: authtoken, orderPrice: totlaPrice}
     const getOrderDetails = await cartService.createPaymentOrder(data)
     console.log(getOrderDetails)
     if (getOrderDetails) {
@@ -79,7 +91,7 @@ export default function UserCart() {
           if (newWindow && !newWindow.closed) {
               newWindow.close();
               console.log(newWindow)
-              setclickedPayNow(false)
+              // setclickedPayNow(false)
               setIsPurchased(true)
           }
         }
@@ -110,38 +122,42 @@ export default function UserCart() {
               </div>
             ))}
           </div>
-          <div className='price-container'>
-            <h1>Total Items Selected: </h1>
-            <h2>{totalItems}</h2>
-          </div>
-          <div className='price-container'>
-            <h1>Total Price: </h1>
-            <h3>{totalPrice}</h3>
-          </div>
-          <div className='button-container'>
-            <button 
-              onClick={handleOpenAddressForm}
-              className='inline-block px-6 py-2 duration-200 bg-customGold hover:bg-customPurple mx-1 rounded-full text-white font-bold'>
-              <FontAwesomeIcon icon={faCreditCard} className="mr-2" />
-                Proceed to Buy
-            </button>
-          </div>
-          {
-            clickedPayNow && (
-              <div className="modal">
-                <div className="modal-content">
-                  <p>Do you want to purchase?</p>
-                  <Button type="submit" onClick={createOrderWithPaypal}>
-                  {/* <FontAwesomeIcon icon={faPaypal} className="mr-2" /> */}
-                    Buy With PayPal
-                  </Button> 
-                  <button type="submit" onClick={handleClose}>
-                    No
-                  </button>
-                </div>
+          
+          <div className="mb-8">
+            <h2 className="text-2xl font-bold mb-4 mt-10">Order Summary</h2>
+            <div className="bg-gray-100 p-4 rounded-lg">
+            <div className="flex justify-between mb-2">
+                <span>Total Items</span>
+                <span>{totalItems}</span>
               </div>
-            )
-          }
+              <div className="flex justify-between mb-2">
+                <span>Subtotal</span>
+                <span>${subTotal}</span>
+              </div>
+              <div className="flex justify-between mb-2">
+                <span>Tax</span>
+                <span>${tax}</span>
+              </div>
+              <div className="flex justify-between mb-2">
+                <span>Shipping</span>
+                <span>${shippingPrice}</span>
+              </div>
+              <div className="flex justify-between mb-2">
+                <span>Paypal Fee</span>
+                <span>${paypal_fee}</span>
+              </div>
+              <div className="flex justify-between font-semibold text-lg mt-4 pt-4 border-t">
+                <span>Total</span>
+                <span>${subTotal + tax + paypal_fee + shippingPrice}</span>
+              </div>
+            </div>
+          </div>
+
+          <Button className="w-full bg-blue-500 text-white py-3 rounded-lg font-semibold hover:bg-blue-600 transition duration-300 flex items-center justify-center mb-7"
+            onClick={createOrderWithPaypal}
+          >
+            <FaLock className="mr-2" /> Place Order With PayPal
+          </Button>
           {
             isPurchased && (
               <div className="modal">
