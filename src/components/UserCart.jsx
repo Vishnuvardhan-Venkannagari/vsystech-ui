@@ -49,7 +49,7 @@ export default function UserCart() {
           const calculatedPayPalFee = parseFloat((addPrice * paypal_fee_percent + fixed_fee).toFixed(2));
           setTax(calculatedTax)
           setpaypal_fee(calculatedPayPalFee)
-          setTotlaPrice(addPrice + tax + paypal_fee + 5 )
+          setTotlaPrice(addPrice + calculatedTax + calculatedPayPalFee + 5 )
         }
       } catch (error) {
         console.error("Error fetching carts:", error.message) 
