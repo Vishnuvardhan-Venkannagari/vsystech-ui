@@ -87,6 +87,7 @@ export default function UserCart() {
       const ws = new WebSocket(`wss://app.vsystech.net/ws/${getOrderDetails.order_id}`);
       // window.location.href = getOrderDetails.approve_url
       var newWindow = window.open(getOrderDetails.approve_url, '_blank');
+      console.log(ws)
       ws.onmessage = (event) => {
         const data = JSON.parse(event.data);
         console.log(data)
