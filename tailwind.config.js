@@ -12,6 +12,7 @@ export default {
         customBrown: "#cda97d",
         customGold: 'rgb(165, 134, 77)',
         customHeaderButtonColor:"#555",
+        priceContainerCustomColor: 'rgb(238, 234, 227)',
       }
     },
   },

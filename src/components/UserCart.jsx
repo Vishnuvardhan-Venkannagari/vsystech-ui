@@ -12,13 +12,15 @@ import AddressForm from './AddressForm.jsx'
 import { faCreditCard } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import paymentSuccessImage from "../../payment_success_image.png"
+import paymentFailIcon from "../../payment_fail_icon.png"
+import loading from '../../loading.png'
 import { FaStar, FaStarHalfAlt, FaRegStar, FaCreditCard, FaLock } from 'react-icons/fa';
 
 export default function UserCart() {
   const authtoken = useSelector((state) => state.auth.authtoken)
   const authStatus = useSelector((state) => state.auth.status)
   const [cartItems, setCartItems] = useState([])
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setisLoading] = useState(true);
   const { register, handleSubmit, formState: { errors } } = useForm() 
   // const [clickedPayNow, setclickedPayNow] = useState(false);
   const [isPurchased, setIsPurchased] = useState(false);
@@ -31,11 +33,12 @@ export default function UserCart() {
   const paypal_fee_percent = 0.029
   const fixed_fee = 0.30
   const [paypal_fee, setpaypal_fee] = useState(0)
+  const [paymentFailed, setPaymentFailed] = useState(false)
 
   useEffect(() => {
     const fetchCart = async() => {
       try {
-        setLoading(false)
+        setisLoading(false)
         const cartResponse = await cartService.getUserCart(authtoken)
         if (cartResponse) {
           setCartItems(cartResponse)
@@ -58,7 +61,7 @@ export default function UserCart() {
     }
     if (authStatus) {
       fetchCart()
-      // setLoading(false)
+      // setisLoading(false)
     }
   }, [authtoken])
 
@@ -78,6 +81,7 @@ export default function UserCart() {
     const data = {gateway_name: "PayPal", authtoken: authtoken, orderPrice: totlaPrice}
     const getOrderDetails = await cartService.createPaymentOrder(data)
     console.log(getOrderDetails)
+    setisLoading(true)
     if (getOrderDetails) {
       // const myorigin = window.location.origin
       const ws = new WebSocket(`wss://app.vsystech.net/ws/${getOrderDetails.order_id}`);
@@ -99,6 +103,7 @@ export default function UserCart() {
         if (data.status === 'failed') {
           console.log("Closing new window as the payment is completed.");
           console.log(newWindow)
+          setPaymentFailed(true)
           if (newWindow && !newWindow.closed) {
               newWindow.close();
               console.log(newWindow)
@@ -112,7 +117,7 @@ export default function UserCart() {
   
   return (
     <div className="w-full">
-      {loading ? (
+      {isLoading ? (
         <img src="../../loading.png" alt="Loading..." /> // Loading indicator
       ) : cartItems.length > 0 ? (
         <Container>
@@ -126,7 +131,7 @@ export default function UserCart() {
           
           <div className="mb-8">
             <h2 className="text-2xl font-bold mb-4 mt-10">Order Summary</h2>
-            <div className="bg-gray-100 p-4 rounded-lg">
+            <div className="bg-priceContainerCustomColor p-4 rounded-lg">
             <div className="flex justify-between mb-2">
                 <span>Total Items</span>
                 <span>{totalItems}</span>
@@ -159,6 +164,7 @@ export default function UserCart() {
           >
             <FaLock className="mr-2" /> Place Order With PayPal
           </Button>
+          
           {
             isPurchased && (
               <div className="modal">
@@ -171,6 +177,23 @@ export default function UserCart() {
                   </Button>
                   <Button type="submit" onClick={handlePaymentSuccessClose}>
                     Close
+                  </Button>
+                </div>
+              </div>
+            )
+          }
+          {
+            paymentFailed && (
+              <div className="modal">
+                <div className="modal-content">
+                  {/* <img src='../../payment_success_image.png' alt="Payment Success..." /> */}
+                  <img src={paymentFailIcon} alt='Payment failed...' />
+                  <p>Your payment is failed</p>
+                  <Button type="submit">
+                    view orders
+                  </Button>
+                  <Button type="submit" onClick={createOrderWithPaypal}>
+                    Try Again
                   </Button>
                 </div>
               </div>
