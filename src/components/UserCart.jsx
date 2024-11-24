@@ -98,12 +98,14 @@ export default function UserCart() {
               console.log(newWindow)
               // setclickedPayNow(false)
               setIsPurchased(true)
+              setisLoading(true)
           }
         }
         if (data.status === 'failed') {
           console.log("Closing new window as the payment is completed.");
           console.log(newWindow)
           setPaymentFailed(true)
+          setisLoading(true)
           if (newWindow && !newWindow.closed) {
               newWindow.close();
               console.log(newWindow)
