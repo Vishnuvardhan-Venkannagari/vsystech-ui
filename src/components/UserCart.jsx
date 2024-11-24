@@ -137,7 +137,7 @@ export default function UserCart() {
           
           <div className="mb-8">
             <h2 className="text-2xl font-bold mb-4 mt-10">Order Summary</h2>
-            <div className="bg-priceContainerCustomColor p-4 rounded-lg">
+            <div className="bg-gray-100 p-4 rounded-lg">
             <div className="flex justify-between mb-2">
                 <span>Total Items</span>
                 <span>{totalItems}</span>
