@@ -175,7 +175,7 @@ export default function UserCart() {
                   <img src={paymentSuccessImage} alt='Payment Success...' />
                   <p>Your Purchase is success</p>
                   <Button type="submit">
-                    view orders
+                    View Orders
                   </Button>
                   <Button type="submit" onClick={handlePaymentSuccessClose}>
                     Close
@@ -191,11 +191,8 @@ export default function UserCart() {
                   {/* <img src='../../payment_success_image.png' alt="Payment Success..." /> */}
                   <img src={paymentFailIcon} alt='Payment failed...' />
                   <p>Your payment is failed</p>
-                  <Button type="submit">
-                    view orders
-                  </Button>
                   <Button type="submit" onClick={createOrderWithPaypal}>
-                    Try Again
+                    Try Again...
                   </Button>
                 </div>
               </div>
