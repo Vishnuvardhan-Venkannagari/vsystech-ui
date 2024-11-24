@@ -75,6 +75,9 @@ export default function UserCart() {
   const handlePaymentSuccessClose = () => {
     setIsPurchased(false) 
   }
+  const handlePaymentFailedClose = () => {
+    setPaymentFailed(false) 
+  }
 
 
   const createOrderWithPaypal = async() => {
@@ -194,6 +197,9 @@ export default function UserCart() {
                   <p>Your payment is failed</p>
                   <Button type="submit" onClick={createOrderWithPaypal}>
                     Try Again...
+                  </Button>
+                  <Button type="submit" onClick={handlePaymentFailedClose}>
+                    Close
                   </Button>
                 </div>
               </div>
