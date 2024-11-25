@@ -65,13 +65,6 @@ export default function UserCart() {
     }
   }, [authtoken])
 
-  // const handleOpenAddressForm = () => {
-  //   setclickedPayNow(true)
-  //   return "Clicked on logout succesfully"
-  // }
-  // const handleClose = () => {
-  //   setclickedPayNow(false) 
-  // }
   const handlePaymentSuccessClose = () => {
     setIsPurchased(false) 
   }
@@ -81,10 +74,10 @@ export default function UserCart() {
 
 
   const createOrderWithPaypal = async() => {
+    setisLoading(true)
     const data = {gateway_name: "PayPal", authtoken: authtoken, orderPrice: totlaPrice}
     const getOrderDetails = await cartService.createPaymentOrder(data)
     console.log(getOrderDetails)
-    // setisLoading(true)
     if (getOrderDetails) {
       // const myorigin = window.location.origin
       const ws = new WebSocket(`wss://app.vsystech.net/ws/${getOrderDetails.order_id}`);
@@ -101,15 +94,15 @@ export default function UserCart() {
               newWindow.close();
               console.log(newWindow)
               // setclickedPayNow(false)
+
               setIsPurchased(true)
-              setisLoading(false)
           }
         }
         if (data.status === 'failed') {
           console.log("Closing new window as the payment is completed.");
           console.log(newWindow)
-          setPaymentFailed(true)
           setisLoading(false)
+          setPaymentFailed(true)
           if (newWindow && !newWindow.closed) {
               newWindow.close();
               console.log(newWindow)
@@ -120,12 +113,15 @@ export default function UserCart() {
       }
     }
   }
+  const isLoadingCancel = () => {
+    setisLoading(false) 
+    // newWindow.close()
+    // console.log(newWindow)
+  }
   
   return (
     <div className="w-full">
-      {isLoading ? (
-        <img src="../../loading.png" alt="Loading..." /> // Loading indicator
-      ) : cartItems.length > 0 ? (
+      {cartItems.length > 0 ? (
         <Container>
           <div className="w-full grid grid-cols-2 gap-2">
             {cartItems.map((item) => (
@@ -170,12 +166,23 @@ export default function UserCart() {
           >
             <FaLock className="mr-2" /> Place Order With PayPal
           </Button>
-          
+          {
+            isLoading && (
+              <div className="modal">
+                <div className="modal-content">
+                  <img src={loading} alt='Payment loading...' />
+                  <p>Your payment is loading...</p>
+                  <Button type="submit" onClick={isLoadingCancel}>
+                    cancel
+                  </Button>
+                </div>
+              </div>
+            )
+          }
           {
             isPurchased && (
               <div className="modal">
                 <div className="modal-content">
-                  {/* <img src='../../payment_success_image.png' alt="Payment Success..." /> */}
                   <img src={paymentSuccessImage} alt='Payment Success...' />
                   <p>Your Purchase is success</p>
                   <Button type="submit">
