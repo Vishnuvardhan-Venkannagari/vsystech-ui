@@ -14,6 +14,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import paymentSuccessImage from "../../payment_success_image.png"
 import paymentFailIcon from "../../payment_fail_icon.png"
 import loading from '../../loading.png'
+import emptyCart from '../../empty_cart.png'
 import { FaStar, FaStarHalfAlt, FaRegStar, FaCreditCard, FaLock } from 'react-icons/fa';
 
 export default function UserCart() {
@@ -77,7 +78,9 @@ export default function UserCart() {
     window.location.reload()
   }
 
-
+  const startShopping = () => {
+    navigate("/")
+  }
   const createOrderWithPaypal = async() => {
     setisLoading(true)
     const data = {gateway_name: "PayPal", authtoken: authtoken, orderPrice: totlaPrice}
@@ -222,7 +225,19 @@ export default function UserCart() {
           }
         </Container>
       ) : (
-        <p className="text-center text-gray-500">Your cart is empty.</p> // Fallback for empty cart
+        // <p className="text-center text-gray-500">Your cart is empty.</p> // Fallback for empty cart
+        // <body className=''bg-gray-100 flex items-center justify-center h-screen>
+        <div className='flex items-center justify-center'>
+          <div class="bg-white p-8 rounded-lg shadow-md text-center max-w-md">
+            <img src={emptyCart} alt="Empty Cart" class="w-24 mx-auto mb-4" />
+            <h1 class="text-2xl font-bold text-gray-800">Your Cart is Empty</h1>
+            <p class="text-gray-600 mt-2">Looks like you haven’t added anything to your cart yet.</p>
+            <Button class="mt-6 bg-blue-500 text-white py-2 px-6 rounded-lg hover:bg-blue-600 transition" onClick={startShopping}>
+              Start Shopping
+            </Button>
+          </div>
+        </div>
+        // </body>
       )}
     </div>
   );
