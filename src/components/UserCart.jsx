@@ -191,7 +191,8 @@ export default function UserCart() {
               <div className="modal">
                 <div className="modal-content">
                   <img src={paymentSuccessImage} alt='Payment Success...' />
-                  <p>Your Purchase is success</p>
+                  <h1 class="text-2xl font-bold">Thank You for Your Order!</h1>
+                  <p class="text-gray-600 mt-2">Your order has been successfully placed. Keep an eye on your inbox for updates.</p>
                   <Button type="submit">
                     View Orders
                   </Button>
