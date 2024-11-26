@@ -68,10 +68,13 @@ export default function UserCart() {
   const handlePaymentSuccessClose = () => {
     setisLoading(false)
     setIsPurchased(false) 
+    window.location.reload()
+
   }
   const handlePaymentFailedClose = () => {
     setisLoading(false)
     setPaymentFailed(false) 
+    window.location.reload()
   }
 
 
@@ -117,6 +120,8 @@ export default function UserCart() {
   }
   const isLoadingCancel = () => {
     setisLoading(false) 
+    window.location.reload()
+
     // newWindow.close()
     // console.log(newWindow)
   }
