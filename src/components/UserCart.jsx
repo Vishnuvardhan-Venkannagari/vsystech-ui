@@ -66,9 +66,11 @@ export default function UserCart() {
   }, [authtoken])
 
   const handlePaymentSuccessClose = () => {
+    setisLoading(false)
     setIsPurchased(false) 
   }
   const handlePaymentFailedClose = () => {
+    setisLoading(false)
     setPaymentFailed(false) 
   }
 
@@ -94,7 +96,7 @@ export default function UserCart() {
               newWindow.close();
               console.log(newWindow)
               // setclickedPayNow(false)
-
+              setisLoading(false)
               setIsPurchased(true)
           }
         }
