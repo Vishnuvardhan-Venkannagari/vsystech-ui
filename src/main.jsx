@@ -14,6 +14,7 @@ import UserProfile from "./pages/UserProfile.jsx"
 import UserCart from './pages/UserCart.jsx'
 import ProfileUpdate from './components/ProfileUpdate.jsx'
 import VerifyPayment from './pages/VerifyPayment.jsx'
+import UserOrders from './pages/UserOrders.jsx'
 
 const router = createBrowserRouter(
   [
@@ -78,6 +79,14 @@ const router = createBrowserRouter(
           element: (
             <AuthLayout authentication={false}>
               <VerifyPayment />
+            </AuthLayout>
+          )
+        },
+        {
+          path: "/orders",
+          element: (
+            <AuthLayout authentication>
+              <UserOrders />
             </AuthLayout>
           )
         }

@@ -128,6 +128,14 @@ export default function UserCart() {
     // newWindow.close()
     // console.log(newWindow)
   }
+
+  const veiwOrders = () => {
+    // setisLoading(false) 
+    // window.location.reload()
+    navigate("/orders")
+    // newWindow.close()
+    // console.log(newWindow)
+  }
   
   return (
     <div className="w-full">
@@ -176,6 +184,11 @@ export default function UserCart() {
           >
             <FaLock className="mr-2" /> Place Order With PayPal
           </Button>
+          <Button className="w-full bg-blue-500 text-white py-3 rounded-lg font-semibold hover:bg-blue-600 transition duration-300 flex items-center justify-center mb-7"
+            onClick={veiwOrders}
+          >
+            <FaLock className="mr-2" /> View Orders
+          </Button>
           {
             isLoading && (
               <div className="modal">
@@ -196,7 +209,7 @@ export default function UserCart() {
                   <img src={paymentSuccessImage} alt='Payment Success...' />
                   <h1 class="text-2xl font-bold">Thank You for Your Order!</h1>
                   <p class="text-gray-600 mt-2">Your order has been successfully placed. Keep an eye on your inbox for updates.</p>
-                  <Button type="submit">
+                  <Button type="submit" onClick={veiwOrders}>
                     View Orders
                   </Button>
                   <Button type="submit" onClick={handlePaymentSuccessClose}>

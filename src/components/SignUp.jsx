@@ -21,7 +21,6 @@ export default function SignUp() {
         try {
             const session = await authservice.signUp(data)
             if (session) {
-                navigate(`/user/profile/${session.user_data.user_id}`)
                 const payload = {userData: session.user_data, authtoken: session.authtoken, status: false}
                 let prefix 
                 const host = window.location.hostname
@@ -34,6 +33,7 @@ export default function SignUp() {
                 sessionStorage.setItem(`${prefix}authtoken`, session.authtoken);
                 sessionStorage.setItem(`${prefix}userData`, JSON.stringify(session.user_data));
                 dispatch(authLogin({ payload }))
+                navigate(`/user/profile/${session.user_data.user_id}`)
             }
         } catch (error) {
             setError(error.message)

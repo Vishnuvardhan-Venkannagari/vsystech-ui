@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form"
 import { useDispatch, useSelector } from "react-redux"
 import { logIn as authLogin } from "../store/authSlice.js"
 import './Login.css'
+import loading from '../../loading.png'
 
 export default function Login() {
     const navigate = useNavigate()
@@ -14,15 +15,15 @@ export default function Login() {
     const [isSubmitting, setIsSubmitting] = useState(false) 
     const dispatch = useDispatch()
     const { register, handleSubmit, formState: { errors } } = useForm()
-    const [loading, setLoading] = useState(false)
-
+    // const [loading, setLoading] = useState(false)
+    const [isLoading, setisLoading] = useState(true);
 
     const login = async (data) => {
         setError("")
         setIsSubmitting(true) 
         try {
             const session = await authservice.logIn(data)
-            setLoading(true)
+            setisLoading(true)
             if (session) {
                 const currentUser = await authservice.getCurrentUser(session.token)
                 const payload = {userData: currentUser, authtoken: session.token}
@@ -44,12 +45,12 @@ export default function Login() {
                     navigate("/login")
                 }
             }
-            setLoading(false)
+            setisLoading(false)
         } catch (error) {
-            setLoading(false)
+            setisLoading(false)
             setError(error.message)
         } finally {
-            setLoading(false)
+            setisLoading(false)
             setIsSubmitting(false)
         }
     }
@@ -57,9 +58,9 @@ export default function Login() {
     return (
         <div className='flex items-center justify-center w-full py-8'>
             <div className='login-container'>
-                {loading && 
+                {/* {loading && 
                 <img src='/Users/vishnureddy/Documents/MyProjects/vsystech-ui/FrontEnd-UI/loding.png' />
-                }
+                } */}
                 <div className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}>
                     <h2 className="login-container-h2">Sign in to your account</h2>
                     <p className="mt-2 text-center text-base text-black/60">

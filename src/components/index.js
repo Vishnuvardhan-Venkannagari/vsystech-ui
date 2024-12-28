@@ -5,7 +5,7 @@ import UserProfile from "./UserProfile"
 import ProfileUpdate from "./ProfileUpdate"
 import UserCart from "./UserCart";
 import VerifyPurchase from "./VerifyPurchase";
-
+import UserOrders from "./UserOrders";
 export {
     Login,
     SignUp,
@@ -13,5 +13,6 @@ export {
     UserProfile,
     ProfileUpdate,
     UserCart,
-    VerifyPurchase
+    VerifyPurchase,
+    UserOrders
 }

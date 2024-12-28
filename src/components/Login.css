@@ -80,3 +80,46 @@
   .login-container .forgot-password a:hover {
     text-decoration: underline;
   }
+
+  .modal-content {
+    position: fixed;
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    width: 400px; /* or try width: 50%; */
+    height: auto;
+    text-align: center;
+    
+}
+
+  
+  .modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    width: 100;
+    text-align: center;
+  }
+  
+  .modal-content button {
+    margin: 10px;
+    /* margin-top: 3px; */
+    padding: 8px 12px;
+    background-color: #3b82f6;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+  }
+
+  .modal-content button:hover {
+    background-color: green;
+  }
+
+  .modal-content img{
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px; 
+  }
